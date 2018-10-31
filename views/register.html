@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+    <link rel="stylesheet" type="text/css" href="register.css">
+    <link rel="stylesheet" type="text/css" href="../Bootstrap/css/bootstrap.min.css">
+
+    <script src="../Jquery/jquery-3.3.1.min.js"></script>
+    <script src="../Bootstrap/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <div class="main-div">
+                    <div class="panel">
+                        <h2>Registro</h2>
+                        <p>Ingrese sus datos</p>
+                    </div>
+                    <form id="register" action="">
+                        <div class="form-group">
+                            <input type="text" name="name" id="name" class="form-control" placeholder="Nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Correo electronico" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="psw" id="psw" class="form-control" placeholder="Contraseña" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="confirm" id="confirm" class="form-control" placeholder="Confirmar contraseña" required>
+                        </div>
+                        <button type="submit" id="btn-register" class="btn btn-primary btn-block btn-md">Crear cuenta</button>
+                        <div class="acount">
+                                <a href="#">¿Ya tienes cuenta?</a>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
