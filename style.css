@@ -1,0 +1,11 @@
+.mostrar{
+	display: block;
+}
+
+.oculto{
+	display: none;
+}
+
+.total img{
+	height:100px;
+}
