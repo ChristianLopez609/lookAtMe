@@ -1,27 +1,51 @@
+body{
+    background: #b92b27;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #1565C0, #b92b27);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #1565C0, #b92b27); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+
+
+
+/* Style Modal Login */
 .modal-header{
-	text-align: center;
 	padding: 35px 50px;
+	text-align: center;
+	background-color: lightgray;
 }
-.modal-header h2{ 
-    color:#444444; 
-    font-size:18px; 
+
+.modal-header h2{
+	color:#444444; 
 }
-.modal-header p { 
-    color:#777777; 
-    font-size:14px; 
-    margin-bottom:15px;
+
+.modal-body p{
+	text-align: center;
 }
 
 .form-control {
     background: #f7f7f7 none repeat scroll 0 0;
 }
 
-.form-group {
-    margin-bottom:10px;
-}
-
 .forgot a {
     color: #777777;
     font-size: 14px;
-    text-decoration: underline;
+	text-decoration: underline;
+	margin-bottom: 10px;
 }
+
+.forgot{
+	margin-bottom: 10px;
+}
+
+.register a{
+	color: #777777;
+	font-size: 14px;
+	margin-top: 10px !important;
+	text-align: center;
+}
+
+.register{
+	text-align: center;
+	margin-top: 10px;
+}
+/* Fin Style Modal */

@@ -72,17 +72,15 @@
       <div class="modal-content">
 
         <!-- Modal Header -->
-        <div class="modal-header" style="padding: 15px">
-          <div>
-            <h2>Inicio de Sesión</h2>
-            <p>Ingrese su correo y contraseña</p>
-          </div>
+        <div class="modal-header">
+          <h2>Inicio de Sesión</h2>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
 
         <!-- Modal body -->
-        <div class="modal-body" style="padding: 15px">
+        <div class="modal-body">
           <form action="">
+            <p>Ingrese su correo y contraseña</p>
             <div class="form-group">
               <input type="email" id="email" name="email" class="form-control" placeholder="Correo electronico"
                 required>
@@ -94,13 +92,17 @@
               <a href="#">Olvido su contraseña?</a>
             </div>
             <button type="submit" id="btn-login" class="btn btn-primary btn-block btn-md">Ingresar</button>
+            <div class="register">
+              <a href="#">No tienes cuenta? Registrate!</a>
+            </div>
           </form>
         </div>
-      </div>
 
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+
       </div>
 
     </div>
