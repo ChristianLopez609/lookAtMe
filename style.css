@@ -1,11 +1,27 @@
-.mostrar{
-	display: block;
+.modal-header{
+	text-align: center;
+	padding: 35px 50px;
+}
+.modal-header h2{ 
+    color:#444444; 
+    font-size:18px; 
+}
+.modal-header p { 
+    color:#777777; 
+    font-size:14px; 
+    margin-bottom:15px;
 }
 
-.oculto{
-	display: none;
+.form-control {
+    background: #f7f7f7 none repeat scroll 0 0;
 }
 
-.total img{
-	height:100px;
+.form-group {
+    margin-bottom:10px;
+}
+
+.forgot a {
+    color: #777777;
+    font-size: 14px;
+    text-decoration: underline;
 }
