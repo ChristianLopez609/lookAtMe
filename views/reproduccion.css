@@ -1,0 +1,55 @@
+body{
+    background: #b92b27;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #1565C0, #b92b27);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #1565C0, #b92b27); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.main-div{
+    margin-top: 15px;
+    border-radius: 10px;
+    background: #fff;
+}
+
+.panel h2{ 
+    color:#444444; 
+    font-size:18px; 
+    margin:0 0 8px 0;
+}
+.panel p { 
+    color:#777777; 
+    font-size:14px; 
+    margin-bottom:15px; 
+    line-height:24px;
+}
+
+.upload{
+    width: auto;
+    height: auto; 
+    min-width: auto;
+    padding: 10px;
+}
+.custom-file{
+    margin-top: 70px;
+}
+
+.description{
+    width: auto; 
+    height: auto; 
+    min-width: auto;
+    padding: 10px;
+    border-left-style: groove;
+} 
+
+.imgRedonda {
+    width:50px;
+    height:50px;
+    border-radius:300px;
+    margin: 0 auto;
+    size: cover;
+    //**border:2px solid #FF3333**//;
+}
+
+.scroll {
+  height:341px;
+  overflow-y: scroll;
+}
