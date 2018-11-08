@@ -4,6 +4,57 @@ body{
     background: linear-gradient(to right, #1565C0, #b92b27); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+.main-div{
+	background: whitesmoke; 
+	opacity: 0.9; 
+	border-radius: 0.3rem;
+	margin-top: 5px;
+}
+.header-content{
+	padding: 2px;
+	margin: 0px;
+}
+
+.body-content{
+	margin-top: 2px; 
+}
+
+.items{
+	display: flex; 
+	flex-direction: row; 
+	flex-wrap: wrap; 
+	margin: 0; 
+	padding: 0; 
+	border: 0;
+}
+
+.grid-video{
+	margin-right: 4px;
+	display: inline-block;
+	width: 210px;
+	margin-bottom: 24px;
+	flex-direction: column;
+}
+
+.details-video{
+	margin-top: 2px;
+	position: relative;
+	cursor: pointer;
+	display: flex; 
+	flex-direction: column;
+}
+
+.details-video .title{
+	font-size: 14px;
+	margin: 0px;
+}
+
+.details-video .detail{
+	font-size: 12px;
+	margin: 0px;
+}
+
+
 
 
 
