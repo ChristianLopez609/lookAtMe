@@ -1,11 +1,102 @@
-.mostrar{
-	display: block;
+body{
+    background: #b92b27;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #1565C0, #b92b27);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #1565C0, #b92b27); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-.oculto{
-	display: none;
+.main-div{
+	background: whitesmoke; 
+	opacity: 1; 
+	border-radius: 0.3rem;
+	margin-top: 5px;
+}
+.header-content{
+	padding: 2px;
+	margin: 0px;
 }
 
-.total img{
-	height:100px;
+.body-content{
+	margin-top: 2px; 
 }
+
+.items{
+	display: flex; 
+	flex-direction: row; 
+	flex-wrap: wrap; 
+	margin: 0; 
+	padding: 0; 
+	border: 0;
+}
+
+.grid-video{
+	margin-right: 4px;
+	display: inline-block;
+	width: 210px;
+	margin-bottom: 24px;
+	flex-direction: column;
+}
+
+.details-video{
+	margin-top: 2px;
+	position: relative;
+	cursor: pointer;
+	display: flex; 
+	flex-direction: column;
+}
+
+.details-video .title{
+	font-size: 14px;
+	margin: 0px;
+}
+
+.details-video .detail{
+	font-size: 12px;
+	margin: 0px;
+}
+
+
+
+
+
+/* Style Modal Login */
+.modal-header{
+	padding: 35px 50px;
+	text-align: center;
+	background-color: lightgray;
+}
+
+.modal-header h2{
+	color:#444444; 
+}
+
+.modal-body p{
+	text-align: center;
+}
+
+.form-control {
+    background: #f7f7f7 none repeat scroll 0 0;
+}
+
+.forgot a {
+    color: #777777;
+    font-size: 14px;
+	text-decoration: underline;
+	margin-bottom: 10px;
+}
+
+.forgot{
+	margin-bottom: 10px;
+}
+
+.register a{
+	color: #777777;
+	font-size: 14px;
+	margin-top: 10px !important;
+	text-align: center;
+}
+
+.register{
+	text-align: center;
+	margin-top: 10px;
+}
+/* Fin Style Modal */
