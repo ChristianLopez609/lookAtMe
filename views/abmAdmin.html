@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
 
-    <link rel="stylesheet" type="text/css" href="register.css">
+    <link rel="stylesheet" type="text/css" href="abmAdmin.css">
 
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
     <script src="../jquery/jquery-3.3.1.min.js"></script>
@@ -52,43 +52,53 @@
     <div class="container">
         <div class="row">
             <div class="col-md">
-                <div class="main-div">
-                    <div class="panel">
-                        <h2>Registro</h2>
-                        <p>Ingrese sus datos</p>
+                <div class="panel">
+                    <div class="table-items" style="border: solid;">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Titulo</th>
+                                    <th scope="col">URL</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td><a href="//www.youtube.com/watch?v=37IN_PW5U8E">publicidad 1</a></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Jacob</td>
+                                    <td><a href="//www.youtube.com/watch?v=37IN_PW5U8E">publicidad 1</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <form id="register" action="">
-                        <div class="form-group">
-                            <input type="text" name="name" id="name" class="form-control" placeholder="Nombre" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" name="email" id="email" class="form-control" placeholder="Correo electronico"
-                                required>
-                        </div>
-                        <div class="form-group">
-                            <select class="form-control" id="controlSelect">
-                                <option value="Tipo de Usuario">Tipo de usuario</option>
-                                <option value="Usuario">Usuario</option>
-                                <option value="Administrativo">Administrativo</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <input type="password" name="psw" id="psw" class="form-control" placeholder="Contraseña"
-                                required>
-                        </div>
-                        <div class="form-group">
-                            <input type="password" name="confirm" id="confirm" class="form-control" placeholder="Confirmar contraseña"
-                                required>
-                        </div>
-                        <button type="submit" id="btn-register" class="btn btn-primary btn-block btn-md">Crear cuenta</button>
-                        <div class="acount">
-                            <a href="#">¿Ya tienes cuenta?</a>
-                        </div>
-                    </form>
+                    <div class="form-panel" style="border:solid; padding: 10px">
+                        <form action="">
+                            <div class="title">
+                                <h4>Carga de Publicidad</h4>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="title" id="title" placeholder="Titulo de publicidad">
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="form-control-file" name="file" id="customFile">
+                                <label class="custom-file-label" for="customFile">Elegir archivo</label>
+                            </div>
+                            <div class="mt-2">
+                                <button class="btn btn-primary">Guardar</button>
+                                <button class="btn btn-danger">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
 </body>
 
 </html>
