@@ -14,7 +14,7 @@
         </form>
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Subir video<span class="sr-only"></span></a>
+            <a class="nav-link" href="../views/upload.php">Subir video<span class="sr-only"></span></a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
@@ -22,11 +22,13 @@
               Cuenta
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-              <?php if ( isset ($_SESSION['username']) ){
+              <?php 
+              var_dump($_SESSION);
+              if ( isset ($_SESSION['username']) ){
                echo "<a class='dropdown-item' href='../index.php'>Cerrar sesión</a>";
               } else { 
                 echo "<a class='dropdown-item' data-toggle='modal' href='#loginModal'>Iniciar sesión</a>";
-                echo "<a class='dropdown-item' href='./views/register.php'>Registrarse</a>";
+                echo "<a class='dropdown-item' href='../views/register.php'>Registrarse</a>";
               }
               ?>
             </div>

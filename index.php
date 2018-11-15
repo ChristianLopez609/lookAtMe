@@ -31,9 +31,9 @@
 
   <div class="container main-div">
     <div class="row">
-      <div class="col-md">
+      <div class="col-md-12">
         <div class="header-content">
-          <h4 class="panel-title">Recomendados</h2>
+          <h4 class="panel-title">Recomendados</h4>
         </div>
         <div class="body-content">
           <div class="items">
@@ -82,8 +82,21 @@
                 <p class="detail">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
               </div>
             </div>
-            <div class="grid-video">
-              <div class="embed-responsive embed-responsive-16by9">
+          </div>
+        </div>
+        </div>
+        </div>
+      </div>
+        <div class="container main-div">
+         <div class="row">
+           <div class="col-md-12">
+            <div class="header-content">
+              <h4 class="panel-title">Mixes De LookAtMe</h4>
+              </div>
+              <div class="body-content">
+                <div class="items">
+                  <div class="grid-video">
+                    <div class="embed-responsive embed-responsive-16by9">
                 <iframe class="embed-responsive-item" src="https://www.youtube.com/watch?v=Mnyk5Uscdug" allowfullscreen></iframe>
               </div>
               <div class="details-video">
@@ -129,9 +142,11 @@
             </div>
           </div>
         </div>
+           </div>
+         </div> 
+        </div>
       </div>
     </div>
-  </div>
   </div>
 
   <!--Content Fin-->
