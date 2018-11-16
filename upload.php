@@ -6,12 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
 
-    <link rel="stylesheet" type="text/css" href="upload.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/upload.css">
 
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-    <script src="../jquery/jquery-3.3.1.min.js"></script>
-    <script src="../bootstrap/js/bootstrap.min.js"></script>
-</head>
+    <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
+    <script src="./assets/jquery/jquery-3.3.1.min.js"></script>
+    <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
 
 <body>
     <!--Navbar -->
@@ -23,23 +22,33 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                <a class="navbar-brand" href="#">LookAtMe</a>
+                <a class="navbar-brand" href="index.php">LookAtMe</a>
                 <form class="form-inline my-2 m-auto my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
                 </form>
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Subir video<span class="sr-only"></span></a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="upload.php">Subir video<span class="sr-only"></span></a>
                     </li>
+                    </li class="nav-item"> 
+                        <a class="nav-link" href="abmAdmin.php">Administrar Publicidad<span class="sr-only"></span></a>
+                    </li> 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Cuenta
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Iniciar sesión</a>
-                            <a class="dropdown-item" href="#">Registrarse</a>
+                          <?php 
+                            if ( isset ($_SESSION['user']) ){
+                            echo "<a class='dropdown-item' href='index.php'>Cerrar sesión</a>";
+                            session_destroy();
+                            } else { 
+                            echo "<a class='dropdown-item' data-toggle='modal' href='#loginModal'>Iniciar sesión</a>";
+                            echo "<a class='dropdown-item' href='register.php'>Registrarse</a>";
+                            }
+                          ?>
                         </div>
                     </li>
                 </ul>
@@ -85,6 +94,49 @@
         </form>
     </div>
     <!--Fin content-->
+    
+     <!-- The Modal -->
+      <div class="modal" id="loginModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h2>¡Bienvenido!</h2>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+              <form action="index.php" method="POST">
+                <p>Ingrese su correo y contraseña</p>
+                <div class="form-group">
+                  <input type="email" id="email" name="email" class="form-control" placeholder="Correo electronico"
+                    required>
+                </div>
+                <div class="form-group">
+                  <input type="password" id="psw" name="psw" class="form-control" placeholder="Contraseña" required>
+                </div>
+                <div class="forgot">
+                  <a href="#">Olvido su contraseña?</a>
+                </div>
+                <button type="submit" id="btn-login" name="login" class="btn btn-primary btn-block btn-md">Ingresar</button>
+                <div class="register">
+                  <a href="register.php">No tienes cuenta? Registrate!</a>
+                </div>
+              </form>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      </div>
+
 
     <!--scripts-->
     <!--scripts Fin-->
