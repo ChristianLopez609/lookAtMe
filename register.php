@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
     <script src="./assets/jquery/jquery-3.3.1.min.js"></script>
     <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./assets/js/validacionregistro.js"></script>
 </head>
 
 <body>
@@ -74,28 +75,28 @@
                         <?php endif; ?> 
                     </div>
                     
-                    <form action="" method="POST">
+                    <form action="" method="POST" id="formregistrar">
                         <div class="form-group">
-                            <input type="text" name="name" id="name" class="form-control" placeholder="Nombre" required>
+                            <input type="text" name="name" id="name" class="form-control" placeholder="Nombre" required="">
                         </div>
                         <div class="form-group">
                             <input type="email" name="email" id="email" class="form-control" placeholder="Correo electronico"
-                                required>
+                                required="">
                         </div>
-                        <div class="form-group">
-                            <select class="form-control" id="controlSelect" name="select">
-                                <option value="Tipo de Usuario">Tipo de usuario</option>
+                        <div class="form-group" id="divcontrolSelect">
+                            <select class="form-control" id="controlSelect" name="select" required="">
+                                <option value="">Tipo de usuario</option>
                                 <option value="1">Usuario</option>
                                 <option value="2">Administrativo</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <input type="password" name="psw" id="psw" class="form-control" placeholder="Contraseña"
-                                required>
+                                required="">
                         </div>
-                        <div class="form-group">
-                            <input type="password" name="confirm" id="confirm" class="form-control" placeholder="Confirmar contraseña"
-                                required>
+                        <div class="form-group" id="divpswconfirm">
+                            <input type="password" name="pswconfirm" id="pswconfirm" class="form-control" placeholder="Confirmar contraseña"
+                                required="">
                         </div>
                         <button type="submit" id="btn-register" name="register" class="btn btn-primary btn-block btn-md">Crear cuenta</button>
                         <div class="acount">
@@ -124,11 +125,11 @@
           <form action="login.php" method="POST">
             <p>Ingrese su correo y contraseña</p>
             <div class="form-group">
-              <input type="email" id="email" name="email" class="form-control" placeholder="Correo electronico"
-                required>
+              <input type="email" id="email-login" name="email-login" class="form-control" placeholder="Correo electronico"
+                >
             </div>
             <div class="form-group">
-              <input type="password" id="psw" name="psw" class="form-control" placeholder="Contraseña" required>
+              <input type="password" id="psw-login" name="psw-login" class="form-control" placeholder="Contraseña" >
             </div>
             <div class="forgot">
               <a href="#">Olvido su contraseña?</a>

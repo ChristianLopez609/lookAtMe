@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
     <script src="./assets/jquery/jquery-3.3.1.min.js"></script>
     <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./assets/js/validacion.js"></script>
+    
 
 <body>
     <!--Navbar -->
@@ -60,7 +62,7 @@
 
     <!--Content-->
     <div class="container">
-        <form action="">
+        <form action="" id="formguardarv" enctype="multipart/form-data">
             <div class="row main-div">
                 <div class="col-md-8 col-lg-8 upload">
                     <div class="panel">
@@ -68,27 +70,32 @@
                         <p>Videos en formato MPG-4</p>
                     </div>
                     <div class="custom-file">
-                        <input type="file" class="form-control-file" name="file" id="customFile">
-                        <label class="custom-file-label" for="customFile">Elegir archivo</label>
+                        <output id="list"></output>
+                        <input type="file" class="custom-file-label" name="file" id="customFile" accept="video/*" required="" ">
+                        <label class="custom-file-label" for="customFile">Seleccionar Archivo</label>
                     </div>
+
                 </div>
                 <div class="col-md-4 col-lg-4 description">
-                    <div class="form-group">
-                        <label for="title">Titulo</label>
-                        <input type="text" class="form-control" name="title" id="title" placeholder="titulo">
-                    </div>
-                    <div class="form-group">
-                        <label for="date">Fecha</label>
-                        <input type="date" class="form-control" name="date" id="date">
-                    </div>
-                    <div class="form-group">
-                        <label for="FormControlTextArea">Descripcion</label>
-                        <textarea class="form-control" id="FormControlTextArea" name="description" rows="3"></textarea>
-                    </div>
-                    <div class="form group">
-                        <button type="button" class="btn btn-danger">Cancelar</button>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
-                    </div>
+                    
+                        <div class="form-group">
+                            <label for="title">Titulo</label>
+                            <input type="text" class="form-control" name="title" id="title" placeholder="Titulo" required="">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="date">Fecha</label>
+                            <input type="text" class="form-control" name="date" id="date" pattern="/([0-9]{2})\-([0-9]{2})\-([0-9]{4})/" required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="FormControlTextArea">Descripcion</label>
+                            <textarea class="form-control" id="description" name="description" rows="3" required=""></textarea>
+                        </div>
+                        <div class="form group">
+                            <button type="button" class="btn btn-danger">Cancelar</button>
+                            <button type="submit" class="btn btn-primary" name="btn-guardar" id="btn-guardar">Guardar</button>
+                        </div>
+
                 </div>
             </div>
         </form>
@@ -141,5 +148,5 @@
     <!--scripts-->
     <!--scripts Fin-->
 </body>
-
+<script src="./assets/js/script2.js" ></script>
 </html>
