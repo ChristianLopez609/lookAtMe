@@ -3,17 +3,17 @@
   $message = " ";
 
   if (isset($_POST['login'])){
-    $user = $_POST['email'];
-    $password = $_POST['psw'];
-    $sql = "SELECT email, password, typeuser FROM USERS WHERE EMAIL = :user AND PASSWORD = :pass";
-    $stmt = $connetion -> prepare ($sql);
-    $stmt -> execute(array(':user' =>$user, ':pass' =>$password));
+    $email = $_POST['email'];
+    $psw = $_POST['psw'];
+    $sql = "SELECT email, password, typeuser FROM users WHERE EMAIL = :email";
+    $stmt = $connetion->prepare($sql);
+    $stmt -> execute(array(':email' =>$email);
     $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
     foreach ($arr as $row) {
-     if ($row['email'] == $user){
-       if ($row['password'] == $password){
+     if ($row['email'] == $email){
+       if ($row['password'] == $psw){
          $_SESION['user'] = $user;
-         $_SESSION['typeuser'] = $row['typeUser'];
+         $_SESSION['type'] = $row['typeUser'];
          $message = '<div class="alert alert-info">
                     Sesión Exitosa!
                   </div>';

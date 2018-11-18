@@ -1,7 +1,7 @@
-<?php session_start();
+<?php 
 
- require './partials/login.php';
- 
+    session_start();
+
 ?>
 
 <!DOCTYPE HTML>
@@ -36,9 +36,25 @@
             <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
           </form>
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-              <a class="nav-link" href='upload.php'>Subir video<span class="sr-only"></span></a>
-            </li>
+
+            <?php
+
+              if (isset($_SESSION['type'])){
+
+                $tipo = $_SESSION['type'];
+                if ( $tipo == 1 ) {
+                  echo "<li class='nav-item active'>
+                        <a class='nav-link' href='upload.php'>Subir video<span class='sr-only'></span></a>
+                      </li>";
+                } else if ( $tipo == 2 ){
+                  echo "</li class='nav-item'> 
+                          <a class='nav-link' href='abmAdmin.php'>Administrar Publicidad<span class='sr-only'></span></a>
+                        </li>";
+                } 
+              } 
+
+            ?>
+            
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
@@ -46,7 +62,7 @@
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                 <?php 
-                  if ( isset ($_SESSION['user']) ){
+                  if ( isset ($_SESSION['name']) ){
                   echo "<a class='dropdown-item' href='logout.php'>Cerrar sesión</a>";
                   
                   } else { 

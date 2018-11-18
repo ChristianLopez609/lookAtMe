@@ -1,46 +1,38 @@
-<?php require 'database.php';
+<?php 
+    session_start();
 
-  $message = " ";
+    require '../database.php';
 
-  if (isset($_POST['register'])){
-        if ( !empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['psw']) && !empty($_POST['confirm']) && !empty($_POST['select']) ) {
+    $name = $_POST["name"];
+    $email = $_POST["email"];
+    $psw = $_POST["psw"];
+    $confirm = $_POST["pswconfirm"];
+    $type = $_POST["select"];
+
+    if ( !empty($name) && !empty($email) && !empty($type) && !empty($psw) && !empty($confirm) ) {
+        
+        if ( $psw == $confirm ){
+
+            $sql = "INSERT INTO users (name, email, password, confirm, typeUser) VALUES (:name, :email, :psw, :confirm, :type)";
             
-            if ( $_POST['psw'] == $_POST['confirm'] ){
-                
-                $name = $_POST['name'];
-                $email = $_POST['email'];
-                $psw = $_POST['psw'];
-                $confirm = $_POST['confirm'];
-                $typeuser = $_POST['select'];
+            $stmt = $connetion->prepare($sql);
 
-                $sql = "INSERT INTO users (name, email, password, confirm, typeUser) VALUES (:name, :email, :psw, :confirm, :typeuser)";
-                
-                $stmt = $connetion->prepare($sql);
+            if ( $stmt -> execute(array(':name' =>$name, ':email' =>$email, ':psw' =>$psw, ':confirm' =>$confirm, ':type' =>$type)) ) {
 
-                if ( $stmt -> execute(array(':name' =>$name, ':email' =>$email, ':psw' =>$psw, ':confirm' =>$confirm, ':typeuser' =>$typeuser)) ) {
-
-                $_SESSION["user"] = $email;
-                $_SESSION["type"] = $typeuser;
-                
-                $message = '<div class="alert alert-info">
-                                Usuario creado con exito!
-                            </div>';
-
-                header("Refresh: 2; url= index.php");
-
-                } else {
-
-                $message = '<div class="alert alert-danger">
-                                Lo siento, ha ocurrido un error.
-                            </div>';   
-                }
+            $_SESSION["name"] = $name;
+            $_SESSION["type"] = $type;
+            
+            echo '<div class="alert alert-info">
+                        Usuario creado con exito!
+                    </div>';
 
             } else {
 
-                $message = '<div class="alert alert-danger">
-                                Lo siento, las contraseñas no coinciden.
-                            </div>'; 
-            } 
-        }
+            echo '<div class="alert alert-danger">
+                        Lo siento, ha ocurrido un error.
+                </div>';   
+            }
+
+        } 
     }
 ?>

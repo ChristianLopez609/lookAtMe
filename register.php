@@ -1,7 +1,11 @@
-<?php session_start();
+<?php
 
-  require './partials/signup.php';
-  
+    session_start();
+
+    if (isset($_SESSION['name'])){
+      header("Location: index.php");
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +21,7 @@
     <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
     <script src="./assets/jquery/jquery-3.3.1.min.js"></script>
     <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="./assets/js/validacionregistro.js"></script>
+    
 </head>
 
 <body>
@@ -37,7 +41,25 @@
             </form>
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
               <li class="nav-item active">
-                <a class="nav-link" href='./upload.php'>Subir video<span class="sr-only"></span></a>
+
+                <?php
+
+                  if (isset($_SESSION['type'])){
+
+                    $tipo = $_SESSION['type'];
+                    if ( $tipo == 1 ) {
+                      echo "<li class='nav-item active'>
+                            <a class='nav-link' href='upload.php'>Subir video<span class='sr-only'></span></a>
+                          </li>";
+                    } else if ( $tipo == 2 ){
+                      echo "</li class='nav-item'> 
+                              <a class='nav-link' href='abmAdmin.php'>Administrar Publicidad<span class='sr-only'></span></a>
+                            </li>";
+                    } 
+                  } 
+
+                ?>
+
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
@@ -46,8 +68,8 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                   <?php 
-                    if ( isset ($_SESSION['user']) ){
-                    echo "<a class='dropdown-item' href='index.php'>Cerrar sesión</a>";
+                    if ( isset ($_SESSION['name']) ){
+                    echo "<a class='dropdown-item' href='logout.php'>Cerrar sesión</a>";
                     
                     } else { 
                     echo "<a class='dropdown-item' data-toggle='modal' href='#loginModal'>Iniciar sesión</a>";
@@ -69,13 +91,9 @@
                     <div class="panel">
                         <h2>Registro</h2>
                         <p>Ingrese sus datos</p>
-
-                        <?php if(!empty($message)): ?>
-                             <?php echo $message; ?>
-                        <?php endif; ?> 
                     </div>
                     
-                    <form action="" method="POST" id="formregistrar">
+                    <form method="POST" id="formregistrar">
                         <div class="form-group">
                             <input type="text" name="name" id="name" class="form-control" placeholder="Nombre" required="">
                         </div>
@@ -98,6 +116,7 @@
                             <input type="password" name="pswconfirm" id="pswconfirm" class="form-control" placeholder="Confirmar contraseña"
                                 required="">
                         </div>
+                        <p id="resultado"></p>
                         <button type="submit" id="btn-register" name="register" class="btn btn-primary btn-block btn-md">Crear cuenta</button>
                         <div class="acount">
                             <a data-toggle='modal' href='#loginModal'>¿Ya tienes cuenta?</a>
@@ -152,6 +171,7 @@
   </div>
   </div>
 
+  <script src="./assets/js/validacionregistro.js"></script>
 </body>
 
 </html>

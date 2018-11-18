@@ -1,3 +1,13 @@
+<?php
+
+    session_start();
+
+    if (!isset($_SESSION['name'])){
+      header("Location: index.php");
+    }
+    
+?>
+
 <!DOCTYPE HTML>
 <html lang="es">
 
@@ -11,7 +21,7 @@
     <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
     <script src="./assets/jquery/jquery-3.3.1.min.js"></script>
     <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="./assets/js/validacion.js"></script>
+    <script src="./assets/js/validacionvideo.js"></script>
     
 
 <body>
@@ -44,8 +54,7 @@
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                           <?php 
                             if ( isset ($_SESSION['user']) ){
-                            echo "<a class='dropdown-item' href='index.php'>Cerrar sesión</a>";
-                            session_destroy();
+                            echo "<a class='dropdown-item' href='logout.php'>Cerrar sesión</a>";
                             } else { 
                             echo "<a class='dropdown-item' data-toggle='modal' href='#loginModal'>Iniciar sesión</a>";
                             echo "<a class='dropdown-item' href='register.php'>Registrarse</a>";
@@ -70,14 +79,14 @@
                         <p>Videos en formato MPG-4</p>
                     </div>
                     <div class="custom-file">
-                        <output id="list"></output>
-                        <input type="file" class="custom-file-label" name="file" id="customFile" accept="video/*" required="" ">
+                        <input type="file" class="custom-file-label" name="file" id="customFile" accept="video/*" required="">
                         <label class="custom-file-label" for="customFile">Seleccionar Archivo</label>
                     </div>
-
+                    <div class="previw">
+                        <output id="list"></output>
+                    </div>
                 </div>
                 <div class="col-md-4 col-lg-4 description">
-                    
                         <div class="form-group">
                             <label for="title">Titulo</label>
                             <input type="text" class="form-control" name="title" id="title" placeholder="Titulo" required="">
@@ -92,10 +101,9 @@
                             <textarea class="form-control" id="description" name="description" rows="3" required=""></textarea>
                         </div>
                         <div class="form group">
-                            <button type="button" class="btn btn-danger">Cancelar</button>
-                            <button type="submit" class="btn btn-primary" name="btn-guardar" id="btn-guardar">Guardar</button>
+                            <button type="submit" class="btn btn-success btn-block" name="btn-guardar" id="btn-guardar">Guardar</button>
+                            <button type="button" class="btn btn-info btn-block">Cancelar</button>
                         </div>
-
                 </div>
             </div>
         </form>
