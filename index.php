@@ -1,7 +1,7 @@
 <?php session_start();
 
  require './partials/login.php';
- require './partials/logout.php';
+ 
 ?>
 
 <!DOCTYPE HTML>
