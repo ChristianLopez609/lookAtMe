@@ -18,9 +18,14 @@
             $stmt = $connetion->prepare($sql);
 
             if ( $stmt -> execute(array(':name' =>$name, ':email' =>$email, ':psw' =>$psw, ':confirm' =>$confirm, ':type' =>$type)) ) {
+            
+            $result = $stmt -> fetch(PDO::FETCH_ASSOC);
 
             $_SESSION["name"] = $name;
             $_SESSION["type"] = $type;
+            $_SESSION["userId"] = $result['userId'];
+
+            echo $_SESSION["userId"];
             
             echo '<div class="alert alert-info">
                         Usuario creado con exito!

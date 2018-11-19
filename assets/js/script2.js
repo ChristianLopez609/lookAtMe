@@ -1,7 +1,7 @@
 $(document).ready(function () {
   
-  function archivo(evt) {
-    var files = evt.target.files; // FileList object
+  function archivo(e) {
+    var files = e.target.files; // FileList object
     // Obtenemos el video del campo "file".
     for (var i = 0, f; f = files[i]; i++) {
       //Solo admitimos video.

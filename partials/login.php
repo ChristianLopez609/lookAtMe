@@ -14,7 +14,7 @@
 
     if ( !empty($email) && !empty($psw) ){
 
-      $sql = "SELECT name, email, password, typeUser FROM users WHERE email = :email";
+      $sql = "SELECT * FROM users WHERE email = :email";
 
       $stmt = $connetion->prepare($sql);
       
@@ -26,12 +26,15 @@
 
       $confirm = $result['password'];
 
-      echo $psw, $confirm;
-
       if ( count($result) > 0 && ($psw == $confirm) ){
         
         $_SESSION["name"] = $result['name'];
         $_SESSION["type"] = $result['typeUser'];
+        $_SESSION["userId"] = $result['userId'];
+
+        echo "id: ",$result['userId'];
+        echo "userId" ,$_SESSION['userId'];
+        echo "name", $result['name'];
 
         echo '<div class="alert alert-info">
                 Inicio de sesion exitoso!

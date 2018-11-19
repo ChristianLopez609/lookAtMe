@@ -20,7 +20,7 @@ $(document).ready(function () {
       },
       success: function (response) {
         console.log(response);
-        window.location = 'http://localhost/demo/index.php';
+        //window.location = 'http://localhost/demo/index.php';
       },
       error: function (errortext) {
         console.log(errortext);

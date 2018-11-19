@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
     <script src="./assets/jquery/jquery-3.3.1.min.js"></script>
     <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="./assets/js/validacionvideo.js"></script>
+    
     
 
 <body>
@@ -40,12 +40,25 @@
                     <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
                 </form>
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="upload.php">Subir video<span class="sr-only"></span></a>
-                    </li>
-                    </li class="nav-item"> 
-                        <a class="nav-link" href="abmAdmin.php">Administrar Publicidad<span class="sr-only"></span></a>
-                    </li> 
+
+                    <?php
+
+                    if (isset($_SESSION['type'])){
+
+                        $tipo = $_SESSION['type'];
+                        if ( $tipo == 1 ) {
+                            echo "<li class='nav-item active'>
+                                <a class='nav-link' href='upload.php'>Subir video<span class='sr-only'></span></a>
+                                </li>";
+                        } else if ( $tipo == 2 ){
+                            echo "</li class='nav-item'> 
+                                    <a class='nav-link' href='abmAdmin.php'>Administrar Publicidad<span class='sr-only'></span></a>
+                                </li>";
+                        } 
+                    } 
+
+                    ?>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -53,7 +66,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                           <?php 
-                            if ( isset ($_SESSION['user']) ){
+                            if ( isset ($_SESSION['name']) ){
                             echo "<a class='dropdown-item' href='logout.php'>Cerrar sesión</a>";
                             } else { 
                             echo "<a class='dropdown-item' data-toggle='modal' href='#loginModal'>Iniciar sesión</a>";
@@ -71,7 +84,7 @@
 
     <!--Content-->
     <div class="container">
-        <form action="" id="formguardarv" enctype="multipart/form-data">
+        <form method="POST" id="formguardarv" enctype="multipart/form-data">
             <div class="row main-div">
                 <div class="col-md-8 col-lg-8 upload">
                     <div class="panel">
@@ -79,10 +92,10 @@
                         <p>Videos en formato MPG-4</p>
                     </div>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-label" name="file" id="customFile" accept="video/*" required="">
+                        <input type="file" size="5000000"  class="custom-file-label" name="file" id="customFile" accept="video/mp4" required="">
                         <label class="custom-file-label" for="customFile">Seleccionar Archivo</label>
                     </div>
-                    <div class="previw">
+                    <div class="preview">
                         <output id="list"></output>
                     </div>
                 </div>
@@ -91,18 +104,17 @@
                             <label for="title">Titulo</label>
                             <input type="text" class="form-control" name="title" id="title" placeholder="Titulo" required="">
                         </div>
-
                         <div class="form-group">
                             <label for="date">Fecha</label>
-                            <input type="text" class="form-control" name="date" id="date" pattern="/([0-9]{2})\-([0-9]{2})\-([0-9]{4})/" required="">
+                            <input type="text" class="form-control" name="date" id="date" required="">
                         </div>
                         <div class="form-group">
                             <label for="FormControlTextArea">Descripcion</label>
                             <textarea class="form-control" id="description" name="description" rows="3" required=""></textarea>
                         </div>
                         <div class="form group">
-                            <button type="submit" class="btn btn-success btn-block" name="btn-guardar" id="btn-guardar">Guardar</button>
-                            <button type="button" class="btn btn-info btn-block">Cancelar</button>
+                            <button type="submit" class="btn btn-primary btn-block" name="btn-guardar" id="btn-guardar">Guardar</button>
+                            <button type="button" class="btn btn-danger btn-block">Cancelar</button>
                         </div>
                 </div>
             </div>
@@ -122,7 +134,7 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-              <form action="index.php" method="POST">
+              <form method="POST" id="formlogin">
                 <p>Ingrese su correo y contraseña</p>
                 <div class="form-group">
                   <input type="email" id="email" name="email" class="form-control" placeholder="Correo electronico"
@@ -154,7 +166,9 @@
 
 
     <!--scripts-->
+    <script src="./assets/js/validacionvideo.js"></script>
+    <!-- <script src="./assets/js/script2.js" ></script> -->
     <!--scripts Fin-->
 </body>
-<script src="./assets/js/script2.js" ></script>
+
 </html>
