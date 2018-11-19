@@ -1,30 +1,47 @@
-<?php require 'database.php';
+<?php
+    session_start();
 
-  $message = " ";
+    require '../database.php';
 
-  if (isset($_POST['login'])){
-    $email = $_POST['email'];
-    $psw = $_POST['psw'];
-    $sql = "SELECT email, password, typeuser FROM users WHERE EMAIL = :email";
-    $stmt = $connetion->prepare($sql);
-    $stmt -> execute(array(':email' =>$email);
-    $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    foreach ($arr as $row) {
-     if ($row['email'] == $email){
-       if ($row['password'] == $psw){
-         $_SESION['user'] = $user;
-         $_SESSION['type'] = $row['typeUser'];
-         $message = '<div class="alert alert-info">
-                    Sesión Exitosa!
-                  </div>';
-          header("Refresh: 2; url= index.php");
-       }
-     } else {
-        $message = '<div class="alert alert-danger">
-        Verifique los campos, por favor!
-        </div>';
-     }
+    $email = $_POST["email"];
+    $psw = $_POST["psw"];
+
+    $email = strip_tags($_POST['email']);
+    $email = trim($_POST['email']);
+
+    $psw = strip_tags($_POST['psw']);
+    $pws = trim($_POST['psw']);
+
+    if ( !empty($email) && !empty($psw) ){
+
+      $sql = "SELECT name, email, password, typeUser FROM users WHERE email = :email";
+
+      $stmt = $connetion->prepare($sql);
+      
+      $stmt -> bindParam(':email', $email);
+
+      $stmt -> execute();
+
+      $result = $stmt -> fetch(PDO::FETCH_ASSOC);
+
+      $confirm = $result['password'];
+
+      echo $psw, $confirm;
+
+      if ( count($result) > 0 && ($psw == $confirm) ){
+        
+        $_SESSION["name"] = $result['name'];
+        $_SESSION["type"] = $result['typeUser'];
+
+        echo '<div class="alert alert-info">
+                Inicio de sesion exitoso!
+              </div>';
+      } else {
+        echo '<div class="alert alert-danger">
+                Lo siento, las credenciales no coinciden.
+              </div>';
+      }
+      
     }
-  }
 
 ?>

@@ -199,11 +199,8 @@
 
         <!-- Modal body -->
         <div class="modal-body">
-          <form action="login.php" method="POST">
+          <form method="POST" id="form-login">
             <p>Ingrese su correo y contraseña</p>
-            <?php if(!empty($message)): ?>
-              <?php echo $message; ?>
-            <?php endif; ?> 
             <div class="form-group">
               <input type="email" id="email" name="email" class="form-control" placeholder="Correo electronico"
                 required>
@@ -235,7 +232,7 @@
 
 
   <!--scripts-->
-
+  <script src="./assets/js/validationLogin.js"></script>
 
   <!--scripts Fin-->
 </body>

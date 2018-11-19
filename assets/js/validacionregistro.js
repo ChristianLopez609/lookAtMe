@@ -74,8 +74,8 @@ $(document).ready(function () {
                 $('#errorselect').remove();
             })
         }
-        
-        if (!(psw == pswconfirm)){
+
+        if (!(psw == pswconfirm)) {
             $("#resultado").html('<div class="alert alert-danger">Lo siento, las contraseñas no coinciden.</div>')
         }
 
@@ -96,11 +96,11 @@ $(document).ready(function () {
                 $("#resultado").html(response);
                 console.log(response);
                 //window.location = 'http://localhost/demo/index.php';
-                
+
             },
-            error: function(errortext){
-				$("#resultado").html(errortext);
-			}
+            error: function (errortext) {
+                $("#resultado").html(errortext);
+            }
         });
         // Fin envio de formulario.
 
