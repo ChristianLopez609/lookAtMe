@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
     <script src="./assets/jquery/jquery-3.3.1.min.js"></script>
     <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.js"></script>
+    <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
     
     
 
@@ -85,13 +87,13 @@
     <!--Content-->
     <div class="container">
         <form method="POST" id="formguardarv" enctype="multipart/form-data">
-            <div class="row main-div">
+            <div class="row main-div" >
                 <div class="col-md-8 col-lg-8 upload">
                     <div class="panel">
                         <h2>Carga de video</h2>
                         <p>Videos en formato MPG-4</p>
                     </div>
-                    <div class="custom-file">
+                    <div class="custom-file" id="divvideo">
                         <input type="file" size="5000000"  class="custom-file-label" name="file" id="customFile" accept="video/mp4" required="">
                         <label class="custom-file-label" for="customFile">Seleccionar Archivo</label>
                     </div>
@@ -163,7 +165,7 @@
 
     <!--scripts-->
     <script src="./assets/js/validacionvideo.js"></script>
-    <!-- <script src="./assets/js/script2.js" ></script> -->
+    <script src="./assets/js/script2.js" ></script> 
     <!--scripts Fin-->
 </body>
 

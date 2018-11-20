@@ -1,20 +1,47 @@
 $(document).ready(function () {
 
-  //Validacion formulario de login.
-  $('#form-login').submit(function (e) {
-    e.preventDefault();
-    var email = $('#email').val();
-    var psw = $('#psw').val();
+    $("#form-login").submit(function(){
+    event.preventDefault()
+        jQuery.validator.setDefaults({
+            debug:true,
+            succes:"valid",
+            errorElement:"div",
+            validClass:"valid-tooltip",
+            errorClass:"alert alert-danger font-weight-bold",
+            highlight:function(element,errorClass,validClass){
+                
+                
+            },
+            unhighlight:function(element,errorClass,validClass){
+                
+                
+            }
+            
+        });
+        var validacion=$("#form-login").validate({
 
-    // Envio de formulario por ajax.
-    var data = new FormData($('#form-login')[0]);
+            rules:{
+                email:{required:true, email:true},
+                contraseña:{ required:true},
 
-    $.ajax({
-      type: 'POST',
-      data: data,
-      url: "partials/login.php",
-      contentType: false,
-      processData: false,
+            },
+
+            messages:{
+                email:{required:" El Email es requisito obligatorio ",email:"El email debe tener el formato de email ej: ejemplo@algo.com"},
+                contrasena:{required:" La contraseña es requisito obligatorio "},
+            },
+        
+        })
+    if(validacion){
+      //enviarajax
+      var formData = new FormData($(this)[0]);
+      $.ajax({
+        data:formData,
+        url:this.action,
+        type:"POST",
+        processData: false,
+        contentType: false,
+        
       beforeSend: function () {
         console.log("Espere por favor..");
       },
@@ -25,9 +52,14 @@ $(document).ready(function () {
       error: function (errortext) {
         console.log(errortext);
       }
-    });
+      });
+    }else{
+      //lo mandas al carajo
+    }
 
-    // Fin envio de formulario.
-  })
 
-})
+
+
+    })
+
+});

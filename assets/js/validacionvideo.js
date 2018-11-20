@@ -5,13 +5,13 @@ $(document).ready(function () {
     $(".error").remove();
 
     if (titulo.length < 1) {
-      $('#title').after('<span class="error">This field is required</span>');
+      $('#title').after('<span class="alert alert-danger" role="alert">This field is required</span>');
       return false;
     }
 
 
     if (description.length < 1) {
-      $('#description').after('<span class="error">This field is required</span>');
+      $('#description').after('<span class="alert alert-danger" role="alert"">This field is required</span>');
       return false;
     }
 

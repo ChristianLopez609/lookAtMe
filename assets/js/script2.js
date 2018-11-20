@@ -7,6 +7,15 @@ $(document).ready(function () {
       //Solo admitimos video.
       if (!f.type.match('video.*')) {
         continue;
+        return false;   
+      }
+       var filesise = this.files[0].size;
+      if (filesise > 5000000) {
+            $('#divvideo').after('<span id="errorvideo" class="alert alert-danger" role="alert">El archivo no debe superar los 5MB</span>');
+            $('#divvideo').focus(function () {
+                $('#errorvideo').remove();
+            }); 
+        this.value = '';
         return false;
       }
       var reader = new FileReader();

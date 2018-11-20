@@ -17,6 +17,8 @@
   <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
   <script src="./assets/jquery/jquery-3.3.1.min.js"></script>
   <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.js"></script>
+    <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
 </head>
 
 <body>
