@@ -80,13 +80,11 @@
 
   <!--Content-->
 
-  <div class="container main-div">
-
-    <div class="row">
-
+  <div class="container">
+    <div class="row main-div">
       <div class="col-md-12">
         <div class="header-content">
-          <h4 class="panel-title">Recomendados</h2>
+          <h4 class="panel-title">Recomendados</h4>
         </div>
         <div class="body-content">
 
@@ -111,6 +109,38 @@
 
         </div>
       </div>
+
+
+    </div>
+    <div class="row main-div">
+      <div class="col-md-12">
+        <div class="header-content">
+          <h4 class="panel-title">Mixes de Lookatme</h4>
+        </div>
+        <div class="body-content">
+
+          <div class="list-video">
+
+          
+            <div class="grid-video">
+
+             
+                <div class="image embed-responsive embed-responsive-16by9">
+                  <iframe class="embed-responsive-item" src="https://www.youtube.com/watch?v=Mnyk5Uscdug" allowfullscreen></iframe>
+                </div>
+                <div class="information">
+                  <p class="name"><strong>Titulo</strong></p>
+                  <a class="view-more" href="">Ver más</a>
+                </div>
+              
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
 
     </div>
   
