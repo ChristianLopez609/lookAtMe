@@ -1,13 +1,8 @@
 $(document).ready(function () {
 
-    $('#formregistrar').submit(function (e) {
-        e.preventDefault();
-        var nombre = $('#name').val();
-        var email = $('#email').val();
-        var psw = $('#psw').val();
-        var pswconfirm = $('#pswconfirm').val();
-        var select = $('#controlSelect').val();
-        $('.error').remove();
+    function validarregistro(nombre,email,psw,pswconfirm,select){
+
+ $('.error').remove();
 
         var expReg = /^([a-zA-Z]{4,14})/;
         nombreValido = expReg.test(nombre) ? true : false;
@@ -16,14 +11,14 @@ $(document).ready(function () {
             $('#name').focus(function () {
                 $('#errorname').remove();
             });
-            return;
+            return false;
         }
         if (nombre.trim().length < 3 || nombre.trim().length > 14) {
             $('#name').after('<span id="errorname" class="error">Nombre invalido.</span>');
             $('#name').focus(function () {
                 $('#errorname').remove();
-                return;
             });
+            return false;
         }
 
         var expRegEmail = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
@@ -33,14 +28,14 @@ $(document).ready(function () {
             $('#email').focus(function () {
                 $('#erroremail').remove();
             });
-            return;
+            return false;
         }
         if (email.trim().length < 1) {
             $('#email').after('<span id="erroremail" class="error">Email invalido</span>');
             $('#email').focus(function () {
                 $('#erroremail').remove();
-                return;
             });
+            return false;
         }
 
         var expRegPsw = /^[a-z0-9_-]{4,10}$/;
@@ -50,14 +45,14 @@ $(document).ready(function () {
             $('#psw').focus(function () {
                 $('#errorpsw').remove();
             });
-            return;
+            return false;
         }
         if (psw.trim().length < 1) {
             $('#psw').after('<span id="errorpsw" class="error">Error contraseña muy corta</span>');
             $('#psw').focus(function () {
                 $('#errorpsw').remove();
-                return;
             });
+            return false;
         }
         var expRegPswConfirm = /^[a-z0-9_-]{4,10}$/;
         pswconfirmValido = expRegPswConfirm.test(pswconfirm) ? true : false;
@@ -66,6 +61,7 @@ $(document).ready(function () {
             $('#pswconfirm').focus(function () {
                 $('#errorpswconfirm').remove();
             })
+            return false;
 
         }
         if (select.trim() === '') {
@@ -73,12 +69,27 @@ $(document).ready(function () {
             $('#divcontrolSelect').focus(function () {
                 $('#errorselect').remove();
             })
+            return false;
         }
 
         if (!(psw == pswconfirm)) {
-            $("#resultado").html('<div class="alert alert-danger">Lo siento, las contraseñas no coinciden.</div>')
-        }
+            $("#resultado").html('<div class="alert alert-danger">Lo siento, las contraseñas no coinciden.</div>');
+            return false;
+        }   
 
+        return true;
+
+    }
+
+    $('#formregistrar').submit(function (e) {
+        e.preventDefault();
+        var nombre = $('#name').val();
+        var email = $('#email').val();
+        var psw = $('#psw').val();
+        var pswconfirm = $('#pswconfirm').val();
+        var select = $('#controlSelect').val();
+        
+        var validacion = validarregistro(nombre,email,psw,pswconfirm,select);
 
         // Envio de formulario por ajax.
         var data = new FormData($('#formregistrar')[0]);

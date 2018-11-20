@@ -7,6 +7,7 @@ $(document).ready(function () {
       //Solo admitimos video.
       if (!f.type.match('video.*')) {
         continue;
+        return false;
       }
       var reader = new FileReader();
       reader.onload = (function (theFile) {
