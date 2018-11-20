@@ -1,57 +1,79 @@
 body{
-    background: #b92b27;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #1565C0, #b92b27);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #1565C0, #b92b27); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
+		background: #e0e0e0 !important;
+	}
 
 .main-div{
-	background: whitesmoke; 
+	background: #fff;
+	position: relative;
+	top: 10px;
 	opacity: 1; 
 	border-radius: 0.3rem;
-	margin-top: 5px;
+	margin: auto;
+	height: auto;
 }
-.header-content{
+
+.main-div .header-content{
 	padding: 2px;
-	margin: 0px;
 }
 
-.body-content{
+.main-div .body-content{
 	margin-top: 2px; 
+	
 }
 
-.items{
+.main-div .body-content .list-video{
 	display: flex; 
-	flex-direction: row; 
 	flex-wrap: wrap; 
-	margin: 0; 
-	padding: 0; 
-	border: 0;
+	flex-direction: row;
+	justify-content: center;
 }
 
-.grid-video{
-	margin-right: 4px;
-	display: inline-block;
-	width: 210px;
-	margin-bottom: 24px;
-	flex-direction: column;
-}
-
-.details-video{
-	margin-top: 2px;
+.main-div .body-content .list-video .grid-video{
+	background: lightgray;
 	position: relative;
-	cursor: pointer;
-	display: flex; 
+	margin-right: 5px;
+	margin-bottom: 24px;
+	display: inline-block;
+	height: 205px;
+	width: 210px;
 	flex-direction: column;
 }
 
-.details-video .title{
-	font-size: 14px;
-	margin: 0px;
+.main-div .body-content .list-video .grid-video .image{
+	height: 118px !important;
+	
 }
 
-.details-video .detail{
-	font-size: 12px;
-	margin: 0px;
+.main-div .body-content .list-video .grid-video .information {
+	background: lightgray;
+	position: absolute;
+	cursor: pointer;
+	display: flex;
+	height: 84px;
+	width: 210px;
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+	align-items: center;
+}
+
+.main-div .body-content .list-video .grid-video .information .name{
+	font-size: 16px;
+	margin-left: 8px !important;
+	margin: 0;
+}
+
+.main-div .body-content .list-video .grid-video .information .view-more{
+	position: absolute;
+	right: 5px;
+	display: block;
+	text-decoration: none;
+	color: #888;
+	font-size: 14px;
+	padding: 6px 12px;
+	border-radius: 90px;
+	border: 2px solid #888;
+	width: auto;
+	line-height: 12px;
 }
 
 

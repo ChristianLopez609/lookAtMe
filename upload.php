@@ -105,10 +105,6 @@
                             <input type="text" class="form-control" name="title" id="title" placeholder="Titulo" required="">
                         </div>
                         <div class="form-group">
-                            <label for="date">Fecha</label>
-                            <input type="text" class="form-control" name="date" id="date" required="">
-                        </div>
-                        <div class="form-group">
                             <label for="FormControlTextArea">Descripcion</label>
                             <textarea class="form-control" id="description" name="description" rows="3" required=""></textarea>
                         </div>
