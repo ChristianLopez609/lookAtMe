@@ -92,6 +92,7 @@
                     <div class="panel">
                         <h2>Registro</h2>
                         <p>Ingrese sus datos</p>
+                        <p id="resultado"></p>
                     </div>
                     
                     <form method="POST" id="formregistrar" autocomplete="off">
@@ -117,7 +118,6 @@
                             <input type="password" name="pswconfirm" id="pswconfirm" class="form-control" placeholder="Confirmar contraseña"
                                 required="">
                         </div>
-                        <p id="resultado"></p>
                         <button type="submit" id="btn-register" name="register" class="btn btn-primary btn-block btn-md">Crear cuenta</button>
                         <div class="acount">
                             <a data-toggle='modal' href='#loginModal'>¿Ya tienes cuenta?</a>
@@ -144,12 +144,12 @@
         <div class="modal-body">
           <form action="login.php" method="POST" autocomplete="off">
             <p>Ingrese su correo y contraseña</p>
+            <p id="resultado-login"></p>
             <div class="form-group">
-              <input type="email" id="email-login" name="email-login" class="form-control" placeholder="Correo electronico"
-                >
+              <input type="email" id="email-login" name="email-login" class="form-control" placeholder="Correo electronico">
             </div>
             <div class="form-group">
-              <input type="password" id="psw-login" name="psw-login" class="form-control" placeholder="Contraseña" >
+              <input type="password" id="psw-login" name="psw-login" class="form-control" placeholder="Contraseña">
             </div>
             <div class="forgot">
               <a href="#">Olvido su contraseña?</a>

@@ -150,6 +150,7 @@
         <div class="modal-body">
           <form method="POST" id="form-login" autocomplete="off">
             <p>Ingrese su correo y contraseña</p>
+            <p id="resultado-login"></p>
             <div class="form-group">
               <input type="email" id="email" name="email" class="form-control" placeholder="Correo electronico"
                 required>

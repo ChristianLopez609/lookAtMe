@@ -1,7 +1,11 @@
-<?php session_start();
+<?php 
 
- require './partials/login.php';
- 
+  session_start();
+
+  if (!isset($_SESSION['name'])){
+    header("Location: index.php");
+  }
+
 ?>
 
 <!DOCTYPE HTML>
@@ -40,17 +44,40 @@
                     </div>
                 </form> 
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Subir video<span class="sr-only"></span></a>
-                    </li>
+
+                      <?php
+
+                      if (isset($_SESSION['type'])){
+
+                      $tipo = $_SESSION['type'];
+                        if ( $tipo == 1 ) {
+                            echo "<li class='nav-item active'>
+                                <a class='nav-link' href='upload.php'>Subir video<span class='sr-only'></span></a>
+                                </li>";
+                        } else if ( $tipo == 2 ){
+                            echo "</li class='nav-item'> 
+                                    <a class='nav-link' href='abmAdmin.php'>Administrar Publicidad<span class='sr-only'></span></a>
+                                </li>";
+                        } 
+                      } 
+
+                    ?>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Cuenta
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Iniciar sesión</a>
-                            <a class="dropdown-item" href="#">Registrarse</a>
+                          <?php 
+                              if ( isset ($_SESSION['name']) ){
+                              echo "<a class='dropdown-item' href='logout.php'>Cerrar sesión</a>";
+                              
+                              } else { 
+                              echo "<a class='dropdown-item' data-toggle='modal' href='#loginModal'>Iniciar sesión</a>";
+                              echo "<a class='dropdown-item' href='register.php'>Registrarse</a>";
+                              }
+                          ?>
                         </div>
                     </li>
                 </ul>

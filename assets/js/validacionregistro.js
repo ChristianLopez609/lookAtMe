@@ -82,11 +82,11 @@ $(document).ready(function () {
         }
 
         return true;
-$('#errorname').remove();
-$('#erroremail').remove();
-$('#errorpsw').remove();
-$('#errorpswconfirm').remove();
-$('#errorselect').remove();
+        $('#errorname').remove();
+        $('#erroremail').remove();
+        $('#errorpsw').remove();
+        $('#errorpswconfirm').remove();
+        $('#errorselect').remove();
 
     }
 
@@ -125,11 +125,9 @@ $('#errorselect').remove();
             // Fin envio de formulario.
 
         } else {
-
+            $("#resultado").html("Ocurrio un error, intente nuevamente");
             //sino valida, tenes que mostrar los errores por pantalla.
 
         }
-
-
     });
 });

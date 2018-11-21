@@ -47,15 +47,15 @@
                     if (isset($_SESSION['type'])){
 
                     $tipo = $_SESSION['type'];
-                    if ( $tipo == 1 ) {
-                        echo "<li class='nav-item active'>
-                            <a class='nav-link' href='upload.php'>Subir video<span class='sr-only'></span></a>
-                            </li>";
-                    } else if ( $tipo == 2 ){
-                        echo "</li class='nav-item'> 
-                                <a class='nav-link' href='abmAdmin.php'>Administrar Publicidad<span class='sr-only'></span></a>
-                            </li>";
-                    } 
+                        if ( $tipo == 1 ) {
+                            echo "<li class='nav-item active'>
+                                <a class='nav-link' href='upload.php'>Subir video<span class='sr-only'></span></a>
+                                </li>";
+                        } else if ( $tipo == 2 ){
+                            echo "</li class='nav-item'> 
+                                    <a class='nav-link' href='abmAdmin.php'>Administrar Publicidad<span class='sr-only'></span></a>
+                                </li>";
+                        } 
                     } 
 
                     ?>
@@ -144,48 +144,6 @@
             </div>
         </div>
     </div>
-
-     <!-- The Modal -->
-      <div class="modal" id="loginModal">
-        <div class="modal-dialog">
-          <div class="modal-content">
-
-            <!-- Modal Header -->
-            <div class="modal-header">
-              <h2>¡Bienvenido!</h2>
-            </div>
-
-            <!-- Modal body -->
-            <div class="modal-body">
-              <form action="index.php" method="POST" autocomplete="off">
-                <p>Ingrese su correo y contraseña</p>
-                <div class="form-group">
-                  <input type="email" id="email" name="email" class="form-control" placeholder="Correo electronico"
-                    required>
-                </div>
-                <div class="form-group">
-                  <input type="password" id="psw" name="psw" class="form-control" placeholder="Contraseña" required>
-                </div>
-                <div class="forgot">
-                  <a href="#">Olvido su contraseña?</a>
-                </div>
-                <button type="submit" id="btn-login" name="login" class="btn btn-primary btn-block btn-md">Ingresar</button>
-                <div class="register">
-                  <a href="register.php">No tienes cuenta? Registrate!</a>
-                </div>
-              </form>
-            </div>
-
-            <!-- Modal footer -->
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
-
-          </div>
-
-        </div>
-      </div>
-      </div>
 
 </body>
 
