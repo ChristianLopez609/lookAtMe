@@ -83,6 +83,7 @@
   <!--Content-->
 
   <div class="container">
+
     <div class="row main-div">
       <div class="col-md-12">
         <div class="header-content">
@@ -91,58 +92,43 @@
         <div class="body-content">
 
           <div class="list-video">
+  
+                <?php 
+                  include "database.php";
+                  
+                  $ruta = 'videos/';
+                  $sql = "SELECT * FROM videos";
+                  $stmt = $connetion->prepare($sql);
+                  
+                  $result = $stmt -> execute();
 
-          
-            <div class="grid-video">
+                  $result = $stmt -> fetchAll();
 
-             
-                <div class="image embed-responsive embed-responsive-16by9">
-                  <iframe class="embed-responsive-item" src="https://www.youtube.com/watch?v=Mnyk5Uscdug" allowfullscreen></iframe>
-                </div>
-                <div class="information">
-                  <p class="name"><strong>Titulo</strong></p>
-                  <a class="view-more" href="">Ver más</a>
-                </div>
+                 
+                  if ( count($result) > 0){
+        
+                    foreach($result as $key){
+                      ?>
+                      <div class="grid-video">
+                        <div class="image">
+                          <video width="210" height="118" class="image-video" src="<?php echo $ruta . $key["urlFile"] ?>"></video>
+                        </div>
+                        <div class="information">
+                          <p class="name"><?php echo $key["title"] ?></p>
+                          <a class="view-more" href="">Ver más</a>
+                        </div>
+                      </div>
+                      <?php
+                    }
+
+                  }
+                ?>
               
-
-            </div>
-
           </div>
 
         </div>
+
       </div>
-
-
-    </div>
-    <div class="row main-div">
-      <div class="col-md-12">
-        <div class="header-content">
-          <h4 class="panel-title">Mixes de Lookatme</h4>
-        </div>
-        <div class="body-content">
-
-          <div class="list-video">
-
-          
-            <div class="grid-video">
-
-             
-                <div class="image embed-responsive embed-responsive-16by9">
-                  <iframe class="embed-responsive-item" src="https://www.youtube.com/watch?v=Mnyk5Uscdug" allowfullscreen></iframe>
-                </div>
-                <div class="information">
-                  <p class="name"><strong>Titulo</strong></p>
-                  <a class="view-more" href="">Ver más</a>
-                </div>
-              
-
-            </div>
-
-          </div>
-
-        </div>
-      </div>
-
 
     </div>
   
@@ -162,7 +148,7 @@
 
         <!-- Modal body -->
         <div class="modal-body">
-          <form method="POST" id="form-login">
+          <form method="POST" id="form-login" autocomplete="off">
             <p>Ingrese su correo y contraseña</p>
             <div class="form-group">
               <input type="email" id="email" name="email" class="form-control" placeholder="Correo electronico"

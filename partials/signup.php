@@ -19,11 +19,11 @@
 
             if ( $stmt -> execute(array(':name' =>$name, ':email' =>$email, ':psw' =>$psw, ':confirm' =>$confirm, ':type' =>$type)) ) {
             
-            $result = $stmt -> fetch(PDO::FETCH_ASSOC);
+            $result = $connetion -> lastInsertId();
 
             $_SESSION["name"] = $name;
             $_SESSION["type"] = $type;
-            $_SESSION["userId"] = $result['userId'];
+            $_SESSION["userId"] = $result;
 
             echo $_SESSION["userId"];
             

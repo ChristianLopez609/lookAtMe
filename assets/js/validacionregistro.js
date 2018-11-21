@@ -1,8 +1,8 @@
 $(document).ready(function () {
 
-    function validarregistro(nombre,email,psw,pswconfirm,select){
+    function validarregistro(nombre, email, psw, pswconfirm, select) {
 
- $('.error').remove();
+        $('.error').remove();
 
         var expReg = /^([a-zA-Z]{4,14})/;
         nombreValido = expReg.test(nombre) ? true : false;
@@ -75,7 +75,7 @@ $(document).ready(function () {
         if (!(psw == pswconfirm)) {
             $("#resultado").html('<div class="alert alert-danger" role="alert">Lo siento, las contraseñas no coinciden.</div>');
             return false;
-        }   
+        }
 
         return true;
 
@@ -88,32 +88,38 @@ $(document).ready(function () {
         var psw = $('#psw').val();
         var pswconfirm = $('#pswconfirm').val();
         var select = $('#controlSelect').val();
-        
-        var validacion = validarregistro(nombre,email,psw,pswconfirm,select);
 
-        // Envio de formulario por ajax.
-        var data = new FormData($('#formregistrar')[0]);
+        var validacion = validarregistro(nombre, email, psw, pswconfirm, select);
 
-        $.ajax({
-            type: 'POST', //método de envio
-            data: data, //datos que se envian a traves de ajax
-            url: "partials/signup.php", //archivo que recibe la peticion
-            contentType: false,
-            processData: false,
-            beforeSend: function () {
-                $("#resultado").html("Procesando, espere por favor...");
-            },
-            success: function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
-                $("#resultado").html(response);
-                console.log(response);
-                //window.location = 'http://localhost/demo/index.php';
+        if (validacion) {
 
-            },
-            error: function (errortext) {
-                $("#resultado").html(errortext);
-            }
-        });
-        // Fin envio de formulario.
+            // Envio de formulario por ajax.
+            var data = new FormData($('#formregistrar')[0]);
+
+            $.ajax({
+                type: 'POST', //método de envio
+                data: data, //datos que se envian a traves de ajax
+                url: "partials/signup.php", //archivo que recibe la peticion
+                contentType: false,
+                processData: false,
+                beforeSend: function () {
+                    $("#resultado").html("Procesando, espere por favor...");
+                },
+                success: function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+                    $("#resultado").html(response);
+                    window.location = 'http://localhost/demo/index.php';
+                },
+                error: function (errortext) {
+                    console.log(errortext);
+                }
+            });
+            // Fin envio de formulario.
+
+        } else {
+
+            //sino valida, tenes que mostrar los errores por pantalla.
+
+        }
 
 
     });

@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
-  function validarvideo(titulo, description){
-    
+  function validarvideo(titulo, description) {
+
     $(".error").remove();
 
     if (titulo.length < 1) {
@@ -26,31 +26,38 @@ $(document).ready(function () {
     var titulo = $('#title').val();
     var description = $('#description').val();
 
-    var validacion = validarvideo(titulo,description);
+    var validacion = validarvideo(titulo, description);
 
-    }); 
+    if (validacion) {
 
-    // Envio de formulario por ajax.
-    var data = new FormData($('#formguardarv')[0]);
+      // Envio de formulario por ajax.
+      var data = new FormData($('#formguardarv')[0]);
 
-    $.ajax({
-      type: 'POST', //método de envio
-      data: data, //datos que se envian a traves de ajax
-      url: "partials/loadvideo.php", //archivo que recibe la peticion
-      contentType: false,
-      processData: false,
-      beforeSend: function () {
-        console.log("subiendo...");
-      },
-      success: function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
-        alert(response);
-        //window.location = 'http://localhost/demo/index.php';
-      },
-      error: function (errortext) {
-        console.log(errortext);
-      }
-    });
-    // Fin envio de formulario.
+      $.ajax({
+        type: 'POST', //método de envio
+        data: data, //datos que se envian a traves de ajax
+        url: "partials/loadvideo.php", //archivo que recibe la peticion
+        contentType: false,
+        processData: false,
+        beforeSend: function () {
+          console.log("subiendo...");
+        },
+        success: function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+          alert(response);
+          //window.location = 'http://localhost/demo/index.php';
+        },
+        error: function (errortext) {
+          console.log(errortext);
+        }
+      });
+      // Fin envio de formulario.
+
+    } else {
+      
+      //sino valida, tenes que mostrar los errores por pantalla.
+
+    }
 
   });
-  // Fin validacion.
+
+});

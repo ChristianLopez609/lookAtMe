@@ -94,7 +94,7 @@
                         <p>Ingrese sus datos</p>
                     </div>
                     
-                    <form method="POST" id="formregistrar">
+                    <form method="POST" id="formregistrar" autocomplete="off">
                         <div class="form-group">
                             <input type="text" name="name" id="name" class="form-control" placeholder="Nombre" required="">
                         </div>
@@ -142,7 +142,7 @@
 
         <!-- Modal body -->
         <div class="modal-body">
-          <form action="login.php" method="POST">
+          <form action="login.php" method="POST" autocomplete="off">
             <p>Ingrese su correo y contraseña</p>
             <div class="form-group">
               <input type="email" id="email-login" name="email-login" class="form-control" placeholder="Correo electronico"

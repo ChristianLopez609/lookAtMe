@@ -1,5 +1,8 @@
 body{
-		background: #e0e0e0 !important;
+		background: #b92b27;  /* fallback for old browsers */
+		background: -webkit-linear-gradient(to right, #1565C0, #b92b27);  /* Chrome 10-25, Safari 5.1-6 */
+		background: linear-gradient(to right, #1565C0, #b92b27); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+		text-align: center;
 	}
 
 .main-div{
@@ -41,8 +44,8 @@ body{
 }
 
 .main-div .body-content .list-video .grid-video .image{
-	height: 118px !important;
-	
+	height: 118px;
+	cursor: pointer;
 }
 
 .main-div .body-content .list-video .grid-video .information {
@@ -50,10 +53,11 @@ body{
 	position: absolute;
 	cursor: pointer;
 	display: flex;
+	flex-direction: column;
 	height: 84px;
 	width: 210px;
-	border-bottom-right-radius: 3px;
-	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
 	align-items: center;
 }
 
@@ -61,12 +65,11 @@ body{
 	font-size: 16px;
 	margin-left: 8px !important;
 	margin: 0;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
 .main-div .body-content .list-video .grid-video .information .view-more{
-	position: absolute;
-	right: 5px;
-	display: block;
 	text-decoration: none;
 	color: #888;
 	font-size: 14px;

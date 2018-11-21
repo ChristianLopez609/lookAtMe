@@ -86,12 +86,12 @@
 
     <!--Content-->
     <div class="container">
-        <form method="POST" id="formguardarv" enctype="multipart/form-data">
+        <form method="POST" id="formguardarv" enctype="multipart/form-data" autocomplete="off">
             <div class="row main-div" >
                 <div class="col-md-8 col-lg-8 upload">
                     <div class="panel">
                         <h2>Carga de video</h2>
-                        <p>Videos en formato MPG-4</p>
+                        <p>Videos en formato MP4</p>
                     </div>
                     <div class="custom-file" id="divvideo">
                         <input type="file" size="5000000"  class="custom-file-label" name="file" id="customFile" accept="video/mp4" required="">
@@ -104,7 +104,7 @@
                 <div class="col-md-4 col-lg-4 description">
                         <div class="form-group">
                             <label for="title">Titulo</label>
-                            <input type="text" class="form-control" name="title" id="title" placeholder="Titulo" required="">
+                            <input type="text" class="form-control" name="title" id="title" required="">
                         </div>
                         <div class="form-group">
                             <label for="FormControlTextArea">Descripcion</label>
