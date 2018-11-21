@@ -1,39 +1,65 @@
 $(document).ready(function () {
 
-  $("#form-login").submit(function () {
-    event.preventDefault()
-    jQuery.validator.setDefaults({
-      debug: true,
-      succes: "valid",
-      errorElement: "div",
-      validClass: "valid-tooltip",
-      errorClass: "alert alert-danger font-weight-bold",
-      highlight: function (element, errorClass, validClass) {
+    function validarlogin(email,psw){
 
-      },
-      unhighlight: function (element, errorClass, validClass) {
+ $('#erroremail').remove();
+ $('#errorpsw').remove();
 
-      }
 
-    });
-    var validacion = $("#form-login").validate({
+        var expRegEmail = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+        emailValido = expRegEmail.test(email) ? true : false;
+        if (!emailValido) {
+            $('#email').after('<div id="erroremail" class="alert alert-danger" role="alert"><span>Email invalido</span></div>');
+            $('#email').focus(function () {
+                $('#erroremail').remove();
+            });
+            return false;
+        }
+        if (email.trim().length < 1) {
+            $('#email').after('<div id="erroremail" class="alert alert-danger" role="alert"><span> Email invalido</span></div>');
+            $('#email').focus(function () {
+                $('#erroremail').remove();
+            });
+            return false;
+        }
 
-      rules: {
-        email: { required: true, email: true },
-        contraseña: { required: true },
-      },
 
-      messages: {
-        email: { required: " El Email es requisito obligatorio ", email: "El email debe tener el formato de email ej: ejemplo@algo.com" },
-        contrasena: { required: " La contraseña es requisito obligatorio " },
-      },
 
-    })
+        var expRegPsw = /^[a-z0-9_-]{4,10}$/;
+        pswValido = expRegPsw.test(psw) ? true : false;
+        if (!pswValido) {
+            $('#psw').after('<div id="errorpsw" class="alert alert-danger" role="alert"><span>Error contraseña muy corta</span></div>');
+            $('#psw').focus(function () {
+                $('#errorpsw').remove();
 
-    if (validacion) {
+            });
+            return false;
+        }
+        if (psw.trim().length < 1) {
+            $('#psw').after('<div id="errorpsw" class="alert alert-danger" role="alert"><span>Error contraseña muy corta2</span></div>');
 
-      // Envio de formulario por ajax.
-      var data = new FormData($('#form-login')[0]);
+            $('#psw').focus(function () {
+                $('#errorpsw').remove();
+              
+            });
+            return false;
+        }
+
+return true;
+ $('#erroremail').remove();
+ $('#errorpsw').remove();
+    }
+
+    $('#form-login').submit(function (e) {
+
+        e.preventDefault();
+        var email = $('#email').val();
+        var psw = $('#psw').val();
+        
+        var validacion = validarlogin(email,psw);
+
+        // Envio de formulario por ajax.
+        var data = new FormData($('#form-login')[0]);
 
       $.ajax({
         type: "POST",
@@ -53,13 +79,5 @@ $(document).ready(function () {
         }
       });
       // Fin envio de formulario.
-
-    } else {
-
-      // Si no valida, tenes que mostrar los errores en pantalla. 
-
-    }
-
-  })
-
-});
+    });
+  });

@@ -2,7 +2,11 @@ $(document).ready(function () {
 
     function validarregistro(nombre, email, psw, pswconfirm, select) {
 
-        $('.error').remove();
+        $('#errorname').remove();
+        $('#erroremail').remove();
+        $('#errorpsw').remove();
+        $('#errorpswconfirm').remove();
+        $('#errorselect').remove();
 
         var expReg = /^([a-zA-Z]{4,14})/;
         nombreValido = expReg.test(nombre) ? true : false;
@@ -78,6 +82,11 @@ $(document).ready(function () {
         }
 
         return true;
+$('#errorname').remove();
+$('#erroremail').remove();
+$('#errorpsw').remove();
+$('#errorpswconfirm').remove();
+$('#errorselect').remove();
 
     }
 
