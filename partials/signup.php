@@ -24,18 +24,9 @@
             $_SESSION["name"] = $name;
             $_SESSION["type"] = $type;
             $_SESSION["userId"] = $result;
-
-            echo $_SESSION["userId"];
             
-            echo '<div class="alert alert-info">
-                        Usuario creado con exito!
-                    </div>';
+            echo "ok";
 
-            } else {
-
-            echo '<div class="alert alert-danger">
-                        Lo siento, ha ocurrido un error.
-                </div>';   
             }
 
         } 

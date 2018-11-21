@@ -103,7 +103,6 @@
                   $result = $stmt -> execute();
 
                   $result = $stmt -> fetchAll();
-
                  
                   if ( count($result) > 0){
         
@@ -115,7 +114,7 @@
                         </div>
                         <div class="information">
                           <p class="name"><?php echo $key["title"] ?></p>
-                          <a class="view-more" href="">Ver más</a>
+                          <a class="view-more" href="reproduccion.php?token=<?php echo $ruta . $key["urlFile"] ?>">Ver más</a>
                         </div>
                       </div>
                       <?php

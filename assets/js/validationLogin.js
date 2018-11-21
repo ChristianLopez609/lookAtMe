@@ -9,14 +9,14 @@ $(document).ready(function () {
         var expRegEmail = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
         emailValido = expRegEmail.test(email) ? true : false;
         if (!emailValido) {
-            $('#email').after('<div id="erroremail" class="alert alert-danger" role="alert"><span>Email invalido</span></div>');
+            $('#email').after('<div id="erroremail" class="alert alert-danger" role="alert"><span>El correo y/o la contraseña no son correctas.</span></div>');
             $('#email').focus(function () {
                 $('#erroremail').remove();
             });
             return false;
         }
         if (email.trim().length < 1) {
-            $('#email').after('<div id="erroremail" class="alert alert-danger" role="alert"><span> Email invalido</span></div>');
+            $('#email').after('<div id="erroremail" class="alert alert-danger" role="alert"><span>El correo y/o la contraseña no son correctas.</span></div>');
             $('#email').focus(function () {
                 $('#erroremail').remove();
             });
@@ -26,7 +26,7 @@ $(document).ready(function () {
         var expRegPsw = /^[a-z0-9_-]{4,10}$/;
         pswValido = expRegPsw.test(psw) ? true : false;
         if (!pswValido) {
-            $('#psw').after('<div id="errorpsw" class="alert alert-danger" role="alert"><span>Error contraseña muy corta</span></div>');
+            $('#psw').after('<div id="errorpsw" class="alert alert-danger" role="alert"><span>El correo y/o la contraseña no son correctas.</span></div>');
             $('#psw').focus(function () {
                 $('#errorpsw').remove();
 
@@ -34,7 +34,7 @@ $(document).ready(function () {
             return false;
         }
         if (psw.trim().length < 1) {
-            $('#psw').after('<div id="errorpsw" class="alert alert-danger" role="alert"><span>Error contraseña muy corta2</span></div>');
+            $('#psw').after('<div id="errorpsw" class="alert alert-danger" role="alert"><span>El correo y/o la contraseña no son correctas.</span></div>');
 
             $('#psw').focus(function () {
                 $('#errorpsw').remove();
@@ -44,8 +44,6 @@ $(document).ready(function () {
         }
 
         return true;
-        $('#erroremail').remove();
-        $('#errorpsw').remove();
     }
 
     $('#form-login').submit(function (e) {
@@ -71,8 +69,14 @@ $(document).ready(function () {
                     $("#resultado-login").html("Procesando, espere por favor...");
                 },
                 success: function (response) {
-                    $("#resultado-login").html(response);
-                    //window.location = 'http://localhost/demo/index.php';
+                    if (response == "ok"){
+                        $("#resultado-login").html('<div class="alert alert-info">¡Inicio de sesión exitoso!</div>');
+                        window.location = 'http://localhost/proyecto/index.php';
+                    }
+                    else {
+                        $("#resultado-login").html('<div class="alert alert-danger">Lo siento, las credenciales no coinciden.</div>')
+                    }
+                    //$("#resultado-login").html(response);
                 },
                 error: function (errortext) {
                     console.log(errortext);

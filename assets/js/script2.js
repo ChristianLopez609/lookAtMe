@@ -1,20 +1,20 @@
 $(document).ready(function () {
-  
+
   function archivo(e) {
     var files = e.target.files; // FileList object
     // Obtenemos el video del campo "file".
     for (var i = 0, f; f = files[i]; i++) {
       //Solo admitimos video.
-      if (!f.type.match('video.*')) {
+      if (!f.type.match('video.mp4')) {
         continue;
-        return false;   
+        return false;
       }
-       var filesise = this.files[0].size;
+      var filesise = this.files[0].size;
       if (filesise > 5000000) {
-            $('#divvideo').after('<span id="errorvideo" class="alert alert-danger" role="alert">El archivo no debe superar los 5MB</span>');
-            $('#divvideo').focus(function () {
-                $('#errorvideo').remove();
-            }); 
+        $('#divvideo').after('<span id="errorvideo" class="alert alert-danger" role="alert">El archivo no debe superar los 5MB</span>');
+        $('#customFile').focus(function () {
+          $('#errorvideo').remove();
+        });
         this.value = '';
         return false;
       }

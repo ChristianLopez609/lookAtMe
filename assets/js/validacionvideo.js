@@ -9,7 +9,6 @@ $(document).ready(function () {
       return false;
     }
 
-
     if (description.length < 1) {
       $('#description').after('<span class="alert alert-danger" role="alert"">This field is required</span>');
       return false;
@@ -43,7 +42,12 @@ $(document).ready(function () {
           console.log("subiendo...");
         },
         success: function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
-          alert(response);
+          if (response == "ok") {
+            console.log("video subido con exito");
+            window.location = 'http://localhost/proyecto/upload.php';
+          } else if (response == "error") {
+            console.log("No es un video");
+          }
           //window.location = 'http://localhost/demo/index.php';
         },
         error: function (errortext) {
@@ -51,9 +55,9 @@ $(document).ready(function () {
         }
       });
       // Fin envio de formulario.
-
     } else {
-      
+
+      console.log("Error");
       //sino valida, tenes que mostrar los errores por pantalla.
 
     }

@@ -32,18 +32,8 @@
         $_SESSION["type"] = $result['typeUser'];
         $_SESSION["userId"] = $result['userId'];
 
-        echo "id: ",$result['userId'];
-        echo "userId" ,$_SESSION['userId'];
-        echo "name", $result['name'];
-
-        echo '<div class="alert alert-info">
-                Inicio de sesion exitoso!
-              </div>';
-      } else {
-        echo '<div class="alert alert-danger">
-                Lo siento, las credenciales no coinciden.
-              </div>';
-      }
+        echo "ok";
+      } 
       
     }
 

@@ -6,6 +6,9 @@
     header("Location: index.php");
   }
 
+  var_dump($_REQUEST["token"]);
+  die();
+
 ?>
 
 <!DOCTYPE HTML>

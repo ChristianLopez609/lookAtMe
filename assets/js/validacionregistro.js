@@ -60,8 +60,8 @@ $(document).ready(function () {
         }
         var expRegPswConfirm = /^[a-z0-9_-]{4,10}$/;
         pswconfirmValido = expRegPswConfirm.test(pswconfirm) ? true : false;
-        if (pswValido != pswconfirmValido) {
-            $('#pswconfirm').after('<span id="errorpswconfirm" class="alert alert-danger" role="alert">This field is required</span>');
+        if (psw != pswconfirm) {
+            $('#pswconfirm').after('<span id="errorpswconfirm" class="alert alert-danger" role="alert">Campo requerido</span>');
             $('#pswconfirm').focus(function () {
                 $('#errorpswconfirm').remove();
             })
@@ -82,11 +82,6 @@ $(document).ready(function () {
         }
 
         return true;
-        $('#errorname').remove();
-        $('#erroremail').remove();
-        $('#errorpsw').remove();
-        $('#errorpswconfirm').remove();
-        $('#errorselect').remove();
 
     }
 
@@ -115,8 +110,13 @@ $(document).ready(function () {
                     $("#resultado").html("Procesando, espere por favor...");
                 },
                 success: function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
-                    $("#resultado").html(response);
-                    window.location = 'http://localhost/demo/index.php';
+                    if (response == "ok"){
+                        $("#resultado").html('<div class="alert alert-info">Usuario creado con exito</div>');
+                        window.location = 'http://localhost/proyecto/index.php';
+                    } else {
+                        $("#resultado").html('<div class="alert alert-danger">Lo siento, ha ocurrido un error.</div>');
+                    }
+                    //$("#resultado").html(response);
                 },
                 error: function (errortext) {
                     console.log(errortext);
