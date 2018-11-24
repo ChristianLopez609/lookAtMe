@@ -6,9 +6,6 @@
     header("Location: index.php");
   }
 
-  var_dump($_REQUEST["token"]);
-  die();
-
 ?>
 
 <!DOCTYPE HTML>
@@ -24,28 +21,22 @@
   <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
   <script src="./assets/jquery/jquery-3.3.1.min.js"></script>
   <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.js"></script>
-    <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
 </head>
 <body>
 
     <!--Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="#">LookAtMe</a>   
+            <a class="navbar-brand" href="index.php">LookAtMe</a>   
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
                 aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                <form class="form-inline my-2 m-auto my-lg-0">
-                    <div class="input-group p-1">
-                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                        <div class="input-group-btn">
-                            <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
-                        </div>
-                    </div>
-                </form> 
+              <form class="form-inline my-2 m-auto my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+              </form>
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
 
                       <?php
@@ -92,83 +83,122 @@
 
   <!--Content-->
 <div class="container">
-  <div class="row">
-    <div class="col-md-8" style="border: 1px solid black;">
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
-      </div>
-    </div>
-  <!-- aca esta lo de los comentarios que te dije obvio que va cargado con lo que escriben no con eso-->
-    <div class="col-md-4" style="border: 1px solid black;">
-      <div class="scroll">
-      <div class="card">
-        <div class="card-header">
-          <span class="p-3">Special title treatment</span> 
-          
-        </div>
-        <div class="card-body">
-          <p class="card-text">Es el mejor video de mi vida!!</p>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-header">
-          <span class="p-3">Special title treatment</span> 
-          
-        </div>
-        <div class="card-body">
-          <p class="card-text">Es el mejor video de mi vida!!</p>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-header">
-          <span class="p-3">Special title treatment</span> 
-          
-        </div>
-        <div class="card-body">
-          <p class="card-text">Es el!!</p>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-header">
-          <span class="p-3">Special title treatment</span> 
-          
-        </div>
-        <div class="card-body">
-          
-          <p class="card-text">Es el mejor video del mundo!!</p>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-header">
-          <span class="p-3">Special title treatment</span> 
-          
-        </div>
-        <div class="card-body">
-          
-          <p class="card-text">Definitivamente vamos a ser felices los 4</p>
 
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-header">
-          <span class="p-3">Special title treatment</span> 
-          
-        </div>
-        <div class="card-body">
-          
-          <p class="card-text">Es el mejor video de mi vida!!</p>
+  <div class="main-videos" style="position: relative; top: 10px;">
 
-        </div>
-      </div>
-      </div>
-    </div>
+		<div class="columns" style="display: flex; margin: 0 auto; flex-direction: row;">
+
+      <?php 
+        // Este script recupera los datos enviados por la URL y los procesa para obtener los datos de titulo y descripcion.
+
+        $urlFile = $_GET["urlFile"];
+        $videoId = $_GET["videoId"];
+
+        include "database.php";
+                  
+        $ruta = 'videos/';
+
+        $sql = "SELECT title, description FROM videos WHERE videoId = :videoId";
+
+        $stmt = $connetion->prepare($sql);
+        
+        $stmt -> bindParam('videoId', $videoId);
+
+        $stmt -> execute();
+
+        $result = $stmt -> fetch(PDO::FETCH_ASSOC);
+
+        $_SESSION["videoId"] = $videoId;
+
+      ?>
+
+       
+
+			<div class="col-md-8" style="background: #fff; padding: 10px">
+					<div class="img-video">
+							<div class="embed-responsive embed-responsive-16by9">
+								<iframe class="embed-responsive-item" src="<?php echo $_GET["urlFile"]?>" allowfullscreen></iframe>
+							</div>
+					</div>
+					<div class="img-description" style="border: solid 1px black">
+							<h6 class="img-title"> <?php echo $result["title"] ?> </h6>
+							<p class="img-description"> <?php echo $result["description"] ?> </p>
+					</div>
+
+          <?php 
+            // Se cierra la conexion de la BD, y se libera la variable.
+            unset($result);
+            unset($connetion);
+
+          ?>                    
+         
+			</div>
+
+			<div class="col-md-4" style="background: #fff; padding: 10px">
+				<div class="scroll-comment" id="box-comment" style="height: 400px;">
+
+           <?php
+
+            require './database.php';
+
+            $username = $_SESSION["name"];
+            $videoId = $_SESSION["videoId"];
+
+            $sql = "SELECT description, name FROM comments INNER JOIN users ON comments.userId = users.userId AND comments.videoId = :videoId";
+                    
+            $stmt = $connetion->prepare($sql);
+
+            $stmt -> bindParam('videoId', $videoId);
+
+            $stmt -> execute();
+              
+            $result = $stmt -> fetchAll();
+                          
+            if ( count($result) > 0){
+
+              foreach($result as $key){
+              
+              $username = $key['name'];
+              $comment = $key['description'];
+
+              ?>
+              <div class="main-content">
+                <p class="autor"><?php echo $username ?></p>
+                <p class="comment"><?php echo $comment ?></p>
+              </div>
+              <?php
+              }
+
+            }
+
+          ?>                   
+
+				</div>
+
+				<div class="input-comment mt-2">
+					<form action="" method="post" id="form-comment">
+						<div class="input-group">
+							<input type="text" class="form-control" name="comment" id="comment" placeholder="Escribir comentario..">
+							<div class="input-group-append">
+								<button class="btn btn-primary" type="submit" name="send-comment">Enviar</button>
+							</div>
+						</div>
+					</form>
+				</div>  
+			</div>
+
+              
+      
+
+		</div>
+
+	</div>
+
   </div>
+
 </div>
-
-    
   <!--scripts-->
-  
-
+	<script src="./assets/js/reproduccion.js"></script>
   <!--scripts Fin-->
 </body>
 

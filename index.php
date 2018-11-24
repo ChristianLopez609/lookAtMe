@@ -1,6 +1,6 @@
 <?php 
 
-    session_start();
+  session_start();
 
 ?>
 
@@ -18,7 +18,7 @@
   <script src="./assets/jquery/jquery-3.3.1.min.js"></script>
   <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.js"></script>
-    <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+  <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
 </head>
 
 <body>
@@ -97,7 +97,9 @@
                   include "database.php";
                   
                   $ruta = 'videos/';
-                  $sql = "SELECT * FROM videos";
+
+                  $sql = "SELECT videoId, title, description, urlFile FROM videos WHERE videoTypeId = 1";
+
                   $stmt = $connetion->prepare($sql);
                   
                   $result = $stmt -> execute();
@@ -107,14 +109,18 @@
                   if ( count($result) > 0){
         
                     foreach($result as $key){
+                      $urlFile = $key["urlFile"];
+                      $title = $key["title"];
+                      $videoId = $key["videoId"];
+
                       ?>
                       <div class="grid-video">
                         <div class="image">
-                          <video width="210" height="118" class="image-video" src="<?php echo $ruta . $key["urlFile"] ?>"></video>
+                          <video width="210" height="118" class="image-video" src="<?php echo $ruta . $urlFile ?>"></video>
                         </div>
                         <div class="information">
-                          <p class="name"><?php echo $key["title"] ?></p>
-                          <a class="view-more" href="reproduccion.php?token=<?php echo $ruta . $key["urlFile"] ?>">Ver más</a>
+                          <p class="name"> <?php echo $title ?> </p>
+                          <a class="view-more" href="reproduccion.php?urlFile=<?php echo $ruta . $urlFile ?>&videoId=<?php echo $videoId ?>"> Ver más</a>
                         </div>
                       </div>
                       <?php
@@ -124,6 +130,13 @@
                 ?>
               
           </div>
+
+          <?php 
+
+          unset($result);
+          unset($connetion);
+
+          ?>
 
         </div>
 
