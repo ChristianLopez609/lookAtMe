@@ -17,6 +17,7 @@
     <title></title>
 
     <link rel="stylesheet" type="text/css" href="./assets/css/upload.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
     <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
     <script src="./assets/jquery/jquery-3.3.1.min.js"></script>
@@ -38,8 +39,8 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                 <a class="navbar-brand" href="index.php">LookAtMe</a>
                 <form class="form-inline my-2 m-auto my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+                    <input class="form-control mr-sm-2 search" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-primary my-2 my-sm-0" type="submit">Buscar</button>
                 </form>
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
 
@@ -90,15 +91,15 @@
             <div class="row main-div" >
                 <div class="col-md-8 col-lg-8 upload">
                     <div class="panel">
-                        <h2>Carga de video</h2>
-                        <p>Videos en formato MP4</p>
+                        <h2 class="title-upload">Carga de video</h2>
+                        <p class="subtitle-upload">Videos en formato MP4</p>
                     </div>
                     <div class="custom-file" id="divvideo">
                         <input type="file" size="5000000"  class="custom-file-label" name="file" id="customFile" accept="video/mp4" required="">
                         <label class="custom-file-label" for="customFile">Seleccionar Archivo</label>
                     </div>
                     <div class="preview">
-                        <output id="list"></output>
+                        <output class="preview-video" id="list"></output>
                     </div>
                 </div>
                 <div class="col-md-4 col-lg-4 description">
@@ -110,7 +111,7 @@
                             <label for="FormControlTextArea">Descripcion</label>
                             <textarea class="form-control" id="description" name="description" rows="3" required=""></textarea>
                         </div>
-                        <div class="form group">
+                        <div class="form group actions">
                             <button type="submit" class="btn btn-primary btn-block" name="btn-guardar" id="btn-guardar">Guardar</button>
                             <button type="button" class="btn btn-danger btn-block">Cancelar</button>
                         </div>

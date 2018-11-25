@@ -3,6 +3,7 @@ body{
 		background: -webkit-linear-gradient(to right, #1565C0, #b92b27);  /* Chrome 10-25, Safari 5.1-6 */
 		background: linear-gradient(to right, #1565C0, #b92b27); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 		text-align: center;
+		font-family: 'Roboto', sans-serif !important;
 	}
 
 .main-div{
@@ -20,6 +21,10 @@ body{
 	padding: 2px;
 }
 
+.main-div .header-content .panel-title{
+	
+}
+
 .main-div .body-content{
 	margin-top: 2px; 
 	
@@ -33,7 +38,6 @@ body{
 }
 
 .main-div .body-content .list-video .grid-video{
-	background: lightgray;
 	position: relative;
 	margin-right: 5px;
 	margin-bottom: 24px;
@@ -43,13 +47,16 @@ body{
 	flex-direction: column;
 }
 
+.main-div .body-content .list-video .grid-video:hover{
+	background: #dfdfdf;
+}
+
 .main-div .body-content .list-video .grid-video .image{
 	height: 118px;
 	cursor: pointer;
 }
 
 .main-div .body-content .list-video .grid-video .information {
-	background: lightgray;
 	position: absolute;
 	cursor: pointer;
 	display: flex;
@@ -58,30 +65,28 @@ body{
 	width: 210px;
 	border-bottom-right-radius: 5px;
 	border-bottom-left-radius: 5px;
-	align-items: center;
 }
 
 .main-div .body-content .list-video .grid-video .information .name{
 	font-size: 16px;
 	margin-left: 8px !important;
-	margin: 0;
-	margin-top: 5px;
-	margin-bottom: 5px;
+	margin:5px;
+	overflow:hidden;
+  white-space:nowrap;
+  text-overflow: ellipsis;
 }
 
 .main-div .body-content .list-video .grid-video .information .view-more{
 	text-decoration: none;
+	text-align: center;
 	color: #888;
 	font-size: 14px;
 	padding: 6px 12px;
 	border-radius: 90px;
 	border: 2px solid #888;
-	width: auto;
+	width: 100%;
 	line-height: 12px;
 }
-
-
-
 
 
 /* Style Modal Login */

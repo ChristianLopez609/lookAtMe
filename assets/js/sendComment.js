@@ -13,7 +13,6 @@ $(document).ready(function () {
       processData: false,
       contentType: false,
       beforeSend: function () {
-        //$("#resultado-login").html("Procesando, espere por favor...");
         console.log("enviando...")
       },
       success: function (response) {

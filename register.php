@@ -17,11 +17,12 @@
     <title></title>
 
     <link rel="stylesheet" type="text/css" href="./assets/css/register.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
     <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
     <script src="./assets/jquery/jquery-3.3.1.min.js"></script>
     <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.js"></script>
     <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>    
 </head>
 
@@ -38,7 +39,7 @@
             <a class="navbar-brand" href="./index.php">LookAtMe</a>
             <form class="form-inline my-2 m-auto my-lg-0">
               <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+              <button class="btn btn-primary my-2 my-sm-0" type="submit">Buscar</button>
             </form>
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
               <li class="nav-item active">

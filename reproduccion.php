@@ -2,10 +2,6 @@
 
   session_start();
 
-  if (!isset($_SESSION['name'])){
-    header("Location: index.php");
-  }
-
 ?>
 
 <!DOCTYPE HTML>
@@ -16,7 +12,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>LockAtMe</title>
 
-  <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/play.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
   <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
   <script src="./assets/jquery/jquery-3.3.1.min.js"></script>
@@ -35,7 +32,7 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
               <form class="form-inline my-2 m-auto my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+                <button class="btn btn-primary my-2 my-sm-0" type="submit">Buscar</button>
               </form>
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
 
@@ -84,9 +81,9 @@
   <!--Content-->
 <div class="container">
 
-  <div class="main-videos" style="position: relative; top: 10px;">
+  <div class="main-videos">
 
-		<div class="columns" style="display: flex; margin: 0 auto; flex-direction: row;">
+		<div class="columns">
 
       <?php 
         // Este script recupera los datos enviados por la URL y los procesa para obtener los datos de titulo y descripcion.
@@ -98,7 +95,7 @@
                   
         $ruta = 'videos/';
 
-        $sql = "SELECT title, description FROM videos WHERE videoId = :videoId";
+        $sql = "SELECT title, description, name FROM videos INNER JOIN users ON videos.videoId = :videoId AND videos.userId = users.userId";
 
         $stmt = $connetion->prepare($sql);
         
@@ -111,22 +108,23 @@
         $_SESSION["videoId"] = $videoId;
 
       ?>
-
+                              
        
 
-			<div class="col-md-8" style="background: #fff; padding: 10px">
+			<div class="col-md-8">
 					<div class="img-video">
 							<div class="embed-responsive embed-responsive-16by9">
 								<iframe class="embed-responsive-item" src="<?php echo $_GET["urlFile"]?>" allowfullscreen></iframe>
 							</div>
 					</div>
-					<div class="img-description" style="border: solid 1px black">
-							<h6 class="img-title"> <?php echo $result["title"] ?> </h6>
+					<div class="img-description">
+              <h6 class="img-title"><strong><?php echo $result["title"] ?></strong> </h6>
+              <p class="img-autor"> <strong>Autor: </strong><?php echo $result["name"] ?> </p>
 							<p class="img-description"> <?php echo $result["description"] ?> </p>
 					</div>
 
           <?php 
-            // Se cierra la conexion de la BD, y se libera la variable.
+            // Se cierra la conexion de la BD, y se liberan la variables.
             unset($result);
             unset($connetion);
 
@@ -134,14 +132,13 @@
          
 			</div>
 
-			<div class="col-md-4" style="background: #fff; padding: 10px">
-				<div class="scroll-comment" id="box-comment" style="height: 400px;">
+			<div class="col-md-4">
+				<div class="scroll-comment" id="box-comment">
 
            <?php
 
             require './database.php';
 
-            $username = $_SESSION["name"];
             $videoId = $_SESSION["videoId"];
 
             $sql = "SELECT description, name FROM comments INNER JOIN users ON comments.userId = users.userId AND comments.videoId = :videoId";
@@ -163,7 +160,7 @@
 
               ?>
               <div class="main-content">
-                <p class="autor"><?php echo $username ?></p>
+                <p class="autor"> <strong> <?php echo $username ?> </strong> </p>
                 <p class="comment"><?php echo $comment ?></p>
               </div>
               <?php
@@ -174,17 +171,26 @@
           ?>                   
 
 				</div>
-
-				<div class="input-comment mt-2">
-					<form action="" method="post" id="form-comment">
-						<div class="input-group">
-							<input type="text" class="form-control" name="comment" id="comment" placeholder="Escribir comentario..">
-							<div class="input-group-append">
-								<button class="btn btn-primary" type="submit" name="send-comment">Enviar</button>
-							</div>
-						</div>
-					</form>
-				</div>  
+        
+        <?php
+          
+          if (isset($_SESSION['name'])){
+            echo '<div class="input-comment">
+              <form action="" method="post" id="form-comment" autocomplete=off>
+                  <div class="form-group">
+                      <textarea class="form-control" id="comment" placeholder="Escribir..." name="comment" rows="2" required=""></textarea>
+                  </div>
+                  <button class="btn btn-primary input-form" type="submit" name="send-comment">Comentar</button>
+              </form>
+            </div>' ;
+          } else {
+            echo '<div class="no-login">
+                    <p class="no-login-access">Para comentar esta publicacion, debe <a href="./register.php">Registrarse</a>.</p>
+                  </div>';  
+          }
+        
+        ?>
+				
 			</div>
 
               
@@ -198,7 +204,7 @@
 
 </div>
   <!--scripts-->
-	<script src="./assets/js/reproduccion.js"></script>
+	<script src="./assets/js/sendComment.js"></script>
   <!--scripts Fin-->
 </body>
 
