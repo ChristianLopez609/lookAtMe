@@ -32,8 +32,12 @@
         $_SESSION["type"] = $result['typeUser'];
         $_SESSION["userId"] = $result['userId'];
 
-        echo "ok";
-      } 
+        echo "Ok";
+      } else {
+
+        echo "Error";
+      
+      }
       
     }
 

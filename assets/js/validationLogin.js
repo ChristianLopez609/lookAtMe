@@ -69,12 +69,12 @@ $(document).ready(function () {
                     $("#resultado-login").html("Procesando, espere por favor...");
                 },
                 success: function (response) {
-                    if (response == "ok") {
-                        $("#resultado-login").html('<div class="alert alert-info">¡Inicio de sesión exitoso!</div>');
+                    if (response == "Ok") {
+                        $("#resultado-login").html('<div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert">&times;</button>¡Inicio de sesión exitoso!</div>');
                         window.location = 'http://localhost/proyecto/index.php';
                     }
                     else {
-                        $("#resultado-login").html('<div class="alert alert-danger">Lo siento, las credenciales no coinciden.</div>')
+                        $("#resultado-login").html('<div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert">&times;</button>Lo siento, las credenciales no coinciden.</div>')
                     }
                 },
                 error: function (errortext) {

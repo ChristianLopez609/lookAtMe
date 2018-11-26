@@ -101,7 +101,7 @@
                             <input type="text" name="name" id="name" class="form-control" placeholder="Nombre" required="">
                         </div>
                         <div class="form-group">
-                            <input type="email" name="email" id="email" class="form-control" placeholder="Correo electronico"
+                            <input type="email" name="email" id="email2" class="form-control" placeholder="Correo electronico"
                                 required="">
                         </div>
                         <div class="form-group" id="divcontrolSelect">
@@ -112,7 +112,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <input type="password" name="psw" id="psw" class="form-control" placeholder="Contraseña"
+                            <input type="password" name="psw" id="psw2" class="form-control" placeholder="Contraseña"
                                 required="">
                         </div>
                         <div class="form-group" id="divpswconfirm">
@@ -143,14 +143,15 @@
 
         <!-- Modal body -->
         <div class="modal-body">
-          <form action="login.php" method="POST" autocomplete="off">
+          <form method="POST" id="form-login" autocomplete="off">
             <p>Ingrese su correo y contraseña</p>
             <p id="resultado-login"></p>
             <div class="form-group">
-              <input type="email" id="email-login" name="email-login" class="form-control" placeholder="Correo electronico">
+              <input type="email" id="email" name="email" class="form-control" placeholder="Correo electronico"
+                required>
             </div>
             <div class="form-group">
-              <input type="password" id="psw-login" name="psw-login" class="form-control" placeholder="Contraseña">
+              <input type="password" id="psw" name="psw" class="form-control" placeholder="Contraseña" required>
             </div>
             <div class="forgot">
               <a href="#">Olvido su contraseña?</a>
@@ -174,6 +175,7 @@
   </div>
 
   <script src="./assets/js/validacionregistro.js"></script>
+  <scrip src="./assets/js/validationLogin.js"></script>
 </body>
 
 </html>
