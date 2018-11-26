@@ -9,11 +9,11 @@ if ($_POST['titulovideo']) {
 
   $titulo = $_POST['titulovideo'];
   
-  $sql = "SELECT videoId, title, description, urlFile FROM videos WHERE videoTypeId = 1 LIKE title = :titulo";
+  $sql = "SELECT videoId, title, description, urlFile FROM videos WHERE videoTypeId = 1 AND title LIKE  :titulo";
           
   $stmt = $connetion->prepare($sql);
-
-  $result = $stmt -> execute(array(':titulo' =>$titulo));
+  $buscar="%".$titulo."%";
+  $result = $stmt -> execute(array(':titulo' =>$buscar));
 
   $rows = $stmt -> fetchAll();
 
@@ -26,11 +26,12 @@ if ($_POST['titulovideo']) {
  // Colocaremos negrita a los textos
  $nombre_video = str_replace($titulo, '<b>'.$titulo.'</b>', $title);
  // Aquì, agregaremos opciones
-    echo '<a href="reproduccion.php?urlFile=<?php $ruta . $urlFile ?>&videoId=<?php echo $videoId ?>"> <li onclick="set_item(\''.str_replace("'", "\'", $title).'\')">'.$nombre_video.'</li></a>';
+
+    echo "<a href='reproduccion.php?urlFile= ".$ruta . $urlFile. "&videoId=".$videoId."'> <li onclick='set_item(\''.str_replace('', '\', ".$title.").'\')'>".$nombre_video."</li></a>";
   }
   }
   else {
-    echo "el video no existe";
+    echo "No hay sugerencias";
   }
 
 }

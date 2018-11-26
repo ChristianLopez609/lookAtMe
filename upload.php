@@ -95,7 +95,7 @@
                         <p class="subtitle-upload">Videos en formato MP4</p>
                     </div>
                     <div class="custom-file" id="divvideo">
-                        <input type="file" size="5000000"  class="custom-file-label" name="file" id="customFile" accept="video/mp4" required="">
+                        <input type="file" size="10000000"  class="custom-file-label" name="file" id="customFile" accept="video/mp4" required="">
                         <label class="custom-file-label" for="customFile">Seleccionar Archivo</label>
                     </div>
                     <div class="preview">
