@@ -10,7 +10,7 @@ $(document).ready(function () {
         return false;
       }
       var filesise = this.files[0].size;
-      if (filesise > 5000000) {
+      if (filesise > 10000000) {
         $('#divvideo').after('<span id="errorvideo" class="alert alert-danger" role="alert">El archivo no debe superar los 5MB</span>');
         $('#customFile').focus(function () {
           $('#errorvideo').remove();

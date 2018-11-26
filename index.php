@@ -21,8 +21,39 @@
 
   <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.js"></script>
   <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+  <script type="text/javascript" src="buscar.js"></script>
 </head>
+<style>
+   
 
+ul a{
+  color: black;
+}
+.input_container {
+ height: 30px;
+ float: left;
+}
+.input_container input {
+}
+.input_container ul {
+ width: 206px;
+ border: 1px solid #eaeaea;
+ position: absolute;
+ z-index: 9;
+ background: #f3f3f3;
+ list-style: none;
+ padding-left: 15px;
+}
+.input_container ul li {
+ padding: 2px;
+}
+.input_container ul li:hover {
+ background: #eaeaea;
+}
+#country_list_id {
+ display: none;
+}
+</style>
 <body>
 
   <!--Navbar -->
@@ -35,10 +66,16 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
           <a class="navbar-brand" href="index.php">LookAtMe</a>
-          <form class="form-inline my-2 m-auto my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-primary my-2 my-sm-0" type="submit">Buscar</button>
+          <form class="form-inline my-2 m-auto my-lg-0" method="POST">
+              <div class="input_container" id="pi">
+            <input autocomplete="off" class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" name="titulo" id="titulo" onkeyup="autocompletar()">
+            <ul id="lista_id"></ul>
+            <button class="btn btn-primary my-2 my-sm-0" type="submit" id="btn-buscar" name="btn-buscar">Buscar</button>
+            </div>
+
           </form>
+
+
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
 
             <?php

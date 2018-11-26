@@ -44,8 +44,10 @@ $(document).ready(function () {
         success: function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
           if (response == "ok") {
             console.log("video subido con exito");
-            window.location = 'http://localhost/proyecto/upload.php';
+            $("#list").html('<div class="alert alert-info">Video subido con exito</div>');
+            window.location = 'http://localhost/lookAtMe/upload.php';
           } else if (response == "error") {
+            $("#list").html('<div class="alert alert-danger">El archivo no es un video</div>');
             console.log("No es un video");
           }
           //window.location = 'http://localhost/demo/index.php';
