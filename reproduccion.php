@@ -5,7 +5,7 @@
   if (isset($_SESSION['type'])){
     $tipo = $_SESSION['type'];
     if ( $tipo == 1 ) {
-      header("Location:http://localhost/proyecto/reproduccion.php"); 
+      //header("Location:http://localhost/proyecto/reproduccion.php"); 
     }else if ( $tipo == 2 ){
       header("Location:http://localhost/proyecto/abmAdmin.php");
     } 
@@ -130,32 +130,37 @@
               <h6 class="img-title"><strong><?php echo $result["title"] ?></strong> </h6>
               <p class="img-autor"> <strong>Autor: </strong><?php echo $result["name"] ?> </p>
 							<p class="img-description"> <?php echo $result["description"] ?> </p>
-              
-              <form id="form-add-playlist" class="form-add-playlist" method="post">
-                  
-                  <div class="form-group" id="playlistSelect">
-                      <select class="form-control" id="playlists" name="playlists" required="">
-                          <option value="">Añadir a playlist</option>
-                          <?php  // Script para recuperar las playlist.
-                            $sql = "SELECT playlistId, titleplay FROM playlist";
-                            $stmt = $connetion->prepare($sql);                           
-                            $stmt -> execute();
-                            $result = $stmt -> fetchAll();                           
-                            if (count($result) > 0){                            
-                              foreach($result as $key){
-                                echo $key["title"];
-                                ?>
-                                <option value="<?php echo $key["playlistId"] ?>"> <?php echo $key["titleplay"] ?> </option>
-                                <?php
+              <?php
+              if (isset($_SESSION['name'])){
+                echo '<form id="form-add-playlist" class="form-add-playlist" method="post">
+                    
+                    <div class="form-group" id="playlistSelect">
+                        <select class="form-control" id="playlists" name="playlists" required="">
+                            <option value="">Añadir a playlist</option>
+                            <?php  // Script para recuperar las playlist.
+                              $sql = "SELECT playlistId, titleplay FROM playlist";
+                              $stmt = $connetion->prepare($sql);                           
+                              $stmt -> execute();
+                              $result = $stmt -> fetchAll();                           
+                              if (count($result) > 0){                            
+                                foreach($result as $key){
+                                  echo $key["title"];
+                                  ?>
+                                  <option value="<?php echo $key["playlistId"] ?>"> <?php echo $key["titleplay"] ?> </option>
+                                  <?php
+                                }
                               }
-                            }
-                          ?>
-                      </select>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Añadir</button>
-                  <div id="cargar" class="result-playlist">
-                  </div>
-              </form>
+                            ?>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Añadir</button>
+                    <div id="cargar" class="result-playlist">
+                    </div>
+                </form>';
+              } else {
+
+              }
+              ?>
 					</div>
 
           <?php 

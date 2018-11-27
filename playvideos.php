@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>LockAtMe</title>
 
-  <link rel="stylesheet" type="text/css" href="./assets/css/play.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/playlist.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
   <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
@@ -125,7 +125,7 @@
 			</div>
 
 			<div class="col-md-4">
-        <ul id="playlist">
+        <ul id="playlist" class="list">
         
         <?php
 
@@ -135,9 +135,9 @@
               $urlFile = $key["urlFile"];
 
               ?>
-              <div movieurl="<?php echo $ruta . $urlFile ?>">
+              <div class="grid" movieurl="<?php echo $ruta . $urlFile ?>">
                 <video width=210 height=118 src="<?php echo $ruta . $urlFile ?>"></video>
-                <p><?php echo $titlevideo ?></p>
+                <p class="title-playlist"><?php echo $titlevideo ?></p>
               </div>
               <?php
             }

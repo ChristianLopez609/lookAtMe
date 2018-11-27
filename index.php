@@ -5,7 +5,7 @@
   if (isset($_SESSION['type'])){
     $tipo = $_SESSION['type'];
     if ( $tipo == 1 ) {
-      header("Location:http://localhost/proyecto/reproduccion.php"); 
+      //header("Location:http://localhost/proyecto/reproduccion.php"); 
     }else if ( $tipo == 2 ){
       header("Location:http://localhost/proyecto/abmAdmin.php");
     } 
@@ -186,42 +186,49 @@ ul a{
 
     </div>
 
-    <div class="row main-div">
+    <div class="row main-playlist">
       <div class="col-md-12">
-        <div class="playlist">
-          <h4 class="playlist-title">Listas de Reproducción</h4>
-          <?php 
-            include "database.php";
-            $sql = "SELECT * FROM playlist";
-            $stmt = $connetion -> prepare($sql);
-            $videos = $stmt -> execute();
-            $videos = $stmt -> fetchAll();
-            if ( count($videos) > 0){
-              foreach($videos as $key){
-                $playlist = $key["playlistId"];
-                $titleplay = $key["titleplay"];
-                ?>
-                <div class="grid-playlist">
-                  <div class="image">
-                    <a class="view-more" href="playvideos.php?playlistId=<?php echo $playlist ?>">
-                      <img src="images/play.png" width="210" height="118" class="image-video" alt="">
-                    </a>
+        <h4 class="playlist-title">Listas de Reproducción</h4>
+          <div class="playlist">
+            
+            <?php 
+              include "database.php";
+              $sql = "SELECT * FROM playlist";
+              $stmt = $connetion -> prepare($sql);
+              $videos = $stmt -> execute();
+              $videos = $stmt -> fetchAll();
+              if ( count($videos) > 0){
+                foreach($videos as $key){
+                  $playlist = $key["playlistId"];
+                  $titleplay = $key["titleplay"];
+                  ?>
+                  <div class="grid-playlist">
+                    <div class="play-img">
+                      <a href="playvideos.php?playlistId=<?php echo $playlist ?>">
+                        <img src="images/play.png" class="image-video" alt="">
+                      </a>
+                    </div>
+                    <div class="play-info">
+                      <p class="name"> <?php echo $titleplay ?> </p>
+                    </div>
                   </div>
-                  
-                  <div class="information">
-                    <p class="name"> <?php echo $titleplay ?> </p>
-                  </div>
-                </div>
-                <?php
+                  <?php
 
+                }
+              } else {
+                echo "error";
               }
-            } else {
-              echo "error";
-            }
-          
-          ?>
-        </div>
+            
+            ?>
+          </div>
       </div>
+
+       <?php 
+
+        unset($videos);
+        unset($connetion);
+
+        ?>
     </div>
   
   </div>
