@@ -118,6 +118,24 @@
                 </div>
             </div>
         </form>
+        <div class="playlist" style="border: solid 1px black; position: relative; top: 10px; background: #fff; padding:10px">
+            <div class="columns">
+                <div class="col-md-12">
+                    <form method="post" id="form-playlist" autocomplete="off">
+                        <h4>Creación Lista de reproducción</h4>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="title-playlist" name="title-playlist" required placeholder="Lista de reproducción">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" id="description-playlist" name="description-playlist" required placeholder="Breve descripción..." rows="3"></textarea>
+                        </div>
+                        <div id="detail-playlist">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
     <!--Fin content-->
     

@@ -87,24 +87,24 @@
 
       <?php 
         // Este script recupera los datos enviados por la URL y los procesa para obtener los datos de titulo y descripcion.                
-        $urlFile = $_GET["urlFile"];
-        $videoId = $_GET["videoId"];
+        $videoId = $_GET["playlistId"];
 
         include "database.php";
                   
         $ruta = 'videos/';
 
-        $sql = "SELECT title, description, name FROM videos INNER JOIN users ON videos.videoId = :videoId AND videos.userId = users.userId";
+        $sql = "SELECT title, description, urlFile, name FROM videos INNER JOIN playlistvideo ON videos.videoId = playlistvideo.videoId LEFT JOIN users ON videos.userId = users.userId WHERE playlistvideo.playlistId = :videoId";
 
         $stmt = $connetion->prepare($sql);
         
         $stmt -> bindParam('videoId', $videoId);
 
         $stmt -> execute();
+        
+        $video = $stmt -> fetch(PDO::FETCH_ASSOC);
 
-        $result = $stmt -> fetch(PDO::FETCH_ASSOC);
+        $result = $stmt -> fetchAll();
 
-        $_SESSION["videoId"] = $videoId;
 
       ?>
                               
@@ -113,111 +113,47 @@
 			<div class="col-md-8">
 					<div class="img-video">
 							<div class="embed-responsive embed-responsive-16by9">
-								<video class="embed-responsive-item" id="video" autoplay controls src="<?php echo $_GET["urlFile"]?>" allowfullscreen></video>
+								<video class="embed-responsive-item" id="videoarea" autoplay controls src="<?php echo $ruta . $video["urlFile"] ?>" allowfullscreen></video>
 							</div>
 					</div>
 					<div class="img-description">
-              <h6 class="img-title"><strong><?php echo $result["title"] ?></strong> </h6>
-              <p class="img-autor"> <strong>Autor: </strong><?php echo $result["name"] ?> </p>
-							<p class="img-description"> <?php echo $result["description"] ?> </p>
-              
-              <form id="form-add-playlist" class="form-add-playlist" method="post">
-                  
-                  <div class="form-group" id="playlistSelect">
-                      <select class="form-control" id="playlists" name="playlists" required="">
-                          <option value="">Añadir a playlist</option>
-                          <?php  // Script para recuperar las playlist.
-                            $sql = "SELECT playlistId, titleplay FROM playlist";
-                            $stmt = $connetion->prepare($sql);                           
-                            $stmt -> execute();
-                            $result = $stmt -> fetchAll();                           
-                            if (count($result) > 0){                            
-                              foreach($result as $key){
-                                echo $key["title"];
-                                ?>
-                                <option value="<?php echo $key["playlistId"] ?>"> <?php echo $key["titleplay"] ?> </option>
-                                <?php
-                              }
-                            }
-                          ?>
-                      </select>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Añadir</button>
-                  <div id="cargar" class="result-playlist">
-                  </div>
-              </form>
-					</div>
-
-          <?php 
-            // Se cierra la conexion de la BD, y se liberan la variables.
-            unset($result);
-            unset($connetion);
-
-          ?>                    
+              <h6 class="img-title"><strong><?php echo $video["title"] ?></strong> </h6>
+              <p class="img-autor"> <strong>Autor: </strong><?php echo $video["name"] ?> </p>
+							<p class="img-description"> <?php echo $video["description"] ?> </p>
+					</div>               
          
 			</div>
 
 			<div class="col-md-4">
-				<div class="scroll-comment" id="box-comment">
-
-           <?php
-
-            require './database.php';
-
-            $videoId = $_SESSION["videoId"];
-
-            $sql = "SELECT description, name FROM comments INNER JOIN users ON comments.userId = users.userId AND comments.videoId = :videoId";
-                    
-            $stmt = $connetion->prepare($sql);
-
-            $stmt -> bindParam('videoId', $videoId);
-
-            $stmt -> execute();
-              
-            $result = $stmt -> fetchAll();
-                          
-            if ( count($result) > 0){
-
-              foreach($result as $key){
-              
-              $username = $key['name'];
-              $comment = $key['description'];
-
-              ?>
-              <div class="main-content">
-                <p class="autor"> <strong> <?php echo $username ?> </strong> </p>
-                <p class="comment"><?php echo $comment ?></p>
-              </div>
-              <?php
-              }
-
-            }
-
-          ?>                   
-
-				</div>
+        <ul id="playlist">
         
         <?php
-          
-          if (isset($_SESSION['name'])){
-            echo '<div class="input-comment">
-              <form action="" method="post" id="form-comment" autocomplete=off>
-                  <div class="form-group">
-                      <textarea class="form-control" id="comment" placeholder="Escribir..." name="comment" rows="2" required=""></textarea>
-                  </div>
-                  <button class="btn btn-primary input-form" type="submit" name="send-comment">Comentar</button>
-              </form>
-            </div>' ;
-          } else {
-            echo '<div class="no-login">
-                    <p class="no-login-access">Para comentar esta publicacion, debe <a href="./register.php">Registrarse</a>.</p>
-                  </div>';  
+
+          if (count($result) > 0){
+            foreach($result as $key){
+              $titlevideo = $key["title"];
+              $urlFile = $key["urlFile"];
+
+              ?>
+              <div movieurl="<?php echo $ruta . $urlFile ?>">
+                <video width=210 height=118 src="<?php echo $ruta . $urlFile ?>"></video>
+                <p><?php echo $titlevideo ?></p>
+              </div>
+              <?php
+            }
           }
-        
         ?>
+        
+            
+        </ul>
 				
 			</div>
+      <?php 
+            // Se cierra la conexion de la BD, y se liberan la variables.
+            unset($result);
+            unset($connetion);
 
+          ?>     
 
 		</div>
 
@@ -225,7 +161,7 @@
 
 </div>
   <!--scripts-->
-	<script src="./assets/js/sendComment.js"></script>
+	<script src="./assets/js/playlist.js"></script>
   <!--scripts Fin-->
 </body>
 

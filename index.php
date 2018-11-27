@@ -133,16 +133,11 @@ ul a{
           <div class="list-video">
   
                 <?php 
-                  include "database.php";
-                  
+                  include "database.php";                
                   $ruta = 'videos/';
-
                   $sql = "SELECT videoId, title, description, urlFile FROM videos WHERE videoTypeId = 1";
-
-                  $stmt = $connetion->prepare($sql);
-                  
+                  $stmt = $connetion->prepare($sql);                 
                   $result = $stmt -> execute();
-
                   $result = $stmt -> fetchAll();
                  
                   if ( count($result) > 0){
@@ -181,6 +176,44 @@ ul a{
 
       </div>
 
+    </div>
+
+    <div class="row main-div">
+      <div class="col-md-12">
+        <div class="playlist">
+          <h4 class="playlist-title">Listas de Reproducción</h4>
+          <?php 
+            include "database.php";
+            $sql = "SELECT * FROM playlist";
+            $stmt = $connetion -> prepare($sql);
+            $videos = $stmt -> execute();
+            $videos = $stmt -> fetchAll();
+            if ( count($videos) > 0){
+              foreach($videos as $key){
+                $playlist = $key["playlistId"];
+                $titleplay = $key["titleplay"];
+                ?>
+                <div class="grid-playlist">
+                  <div class="image">
+                    <a class="view-more" href="playvideos.php?playlistId=<?php echo $playlist ?>">
+                      <img src="images/play.png" width="210" height="118" class="image-video" alt="">
+                    </a>
+                  </div>
+                  
+                  <div class="information">
+                    <p class="name"> <?php echo $titleplay ?> </p>
+                  </div>
+                </div>
+                <?php
+
+              }
+            } else {
+              echo "error";
+            }
+          
+          ?>
+        </div>
+      </div>
     </div>
   
   </div>
