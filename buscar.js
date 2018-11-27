@@ -4,19 +4,19 @@ function autocompletar() {
  var titulovideo = $('#titulo').val();
  //Contamos el valor del input mediante una condicional
  if (titulovideo.length >= minimo_letras) {
- $.ajax({
- url: 'partials/search.php',
- type: 'POST',
- data: {titulovideo},
- success:function(data){
- $('#lista_id').show();
- $('#lista_id').html(data);
- }
- });
+ 	$.ajax({
+ 		url: 'partials/search.php',
+ 		type: 'POST',
+ 		data: {titulovideo},
+ 		success:function(data){
+ 			$('#lista_id').show();
+ 			$('#lista_id').html(data);
+ 		}
+ 	});
  } else {
  //ocultamos la lista
  $('#lista_id').hide();
- }
+}
 }
  
 // Funcion Mostrar valores

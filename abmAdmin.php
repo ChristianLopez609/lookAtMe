@@ -2,9 +2,14 @@
 
     session_start();
 
-    if (!isset($_SESSION['name'])){
-      header("Location: index.php");
-    }
+  if (isset($_SESSION['permisos'])){
+    if (in_array("publicar_video_pub", $_SESSION['permisos'])) {
+      
+    }else{
+        header("Location:http://localhost/proyecto/index.php");
+    } 
+  }
+
     
 ?>
 
@@ -35,11 +40,8 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                <a class="navbar-brand" href="index.php">LookAtMe</a>
-                <form class="form-inline my-2 m-auto my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
-                </form>
+                <a class="navbar-brand" href="abmAdmin.php">LookAtMe</a>
+                <h3 class="navbar-nav ml-auto mt-2 mt-lg-0">Bienvenido <?php echo $_SESSION['name'];?></h3>
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
 
                     <?php

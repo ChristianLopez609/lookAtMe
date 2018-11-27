@@ -1,12 +1,12 @@
 <?php 
   session_start();
 
-  if (isset($_SESSION['type'])){
-    $tipo = $_SESSION['type'];
-    if ( $tipo == 1 ) {
-      //header("Location:http://localhost/proyecto/reproduccion.php"); 
-    }else if ( $tipo == 2 ){
-      header("Location:http://localhost/proyecto/abmAdmin.php");
+  if (isset($_SESSION['permisos'])){
+    if (in_array("ver_videos_user", $_SESSION['permisos'])) { 
+    }
+    if (in_array("publicar_video_pub", $_SESSION['permisos'])) {
+        header("Location:http://localhost/proyecto/abmAdmin.php");
+       
     } 
   }
 
@@ -78,6 +78,7 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
   <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/search.css">
   <script src="./assets/jquery/jquery-3.3.1.min.js"></script>
   <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
 
@@ -85,36 +86,6 @@
   <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
   <script type="text/javascript" src="buscar.js"></script>
 </head>
-
-<style>
-ul a{
-  color: black;
-}
-.input_container {
- height: 30px;
- float: left;
-}
-.input_container input {
-}
-.input_container ul {
- width: 206px;
- border: 1px solid #eaeaea;
- position: absolute;
- z-index: 9;
- background: #f3f3f3;
- list-style: none;
- padding-left: 15px;
-}
-.input_container ul li {
- padding: 2px;
-}
-.input_container ul li:hover {
- background: #eaeaea;
-}
-#country_list_id {
- display: none;
-}
-</style>
 
 <body>
 
@@ -194,12 +165,18 @@ ul a{
 
           <div class="list-video">
   
-                <?php 
-                  include "database.php";                
+                <?php
+                
+                  include "database.php";
+                  
                   $ruta = 'videos/';
+
                   $sql = "SELECT videoId, title, description, urlFile FROM videos WHERE videoTypeId = 1";
-                  $stmt = $connetion->prepare($sql);                 
+
+                  $stmt = $connetion->prepare($sql);
+                  
                   $result = $stmt -> execute();
+
                   $result = $stmt -> fetchAll();
                  
                   if ( count($result) > 0){
@@ -239,7 +216,7 @@ ul a{
       </div>
 
     </div>
-
+  
     <div class="row main-playlist">
       <div class="col-md-12">
         <h4 class="playlist-title">Listas de Reproducción</h4>
@@ -285,6 +262,7 @@ ul a{
         ?>
     </div>
   
+  </div>
   </div>
 
   <!--Content Fin-->

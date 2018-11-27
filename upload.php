@@ -20,6 +20,8 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
     <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/search.css">
+    
     <script src="./assets/jquery/jquery-3.3.1.min.js"></script>
     <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.js"></script>
@@ -38,10 +40,14 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                 <a class="navbar-brand" href="index.php">LookAtMe</a>
-                <form class="form-inline my-2 m-auto my-lg-0">
-                    <input class="form-control mr-sm-2 search" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-primary my-2 my-sm-0" type="submit">Buscar</button>
-                </form>
+          <form class="form-inline my-2 m-auto my-lg-0" method="POST">
+              <div class="input_container" id="pi">
+            <input autocomplete="off" class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" name="titulo" id="titulo" onkeyup="autocompletar()">
+            <ul id="lista_id"></ul>
+            <button class="btn btn-primary my-2 my-sm-0" type="submit" id="btn-buscar" name="btn-buscar">Buscar</button>
+            </div>
+
+          </form>
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
 
                     <?php

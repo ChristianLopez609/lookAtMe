@@ -10,12 +10,14 @@
   $tipoUser = $_SESSION['type'];
   $tipoVideo = 'vacio';
 
-  if ($tipoUser == 1){
+  if (in_array("publicar_video", $_SESSION['permisos'])){
     $tipoVideo = 1;
     $stringruta = "../videos/";
   } else {
-    $tipoVideo = 2;
-    $stringruta = "../videos_admin/";
+    if (in_array("publicar_video_pub", $_SESSION['permisos'])) {
+        $tipoVideo = 2;
+        $stringruta = "../videos_admin/";
+      } 
   }
 
   if ( $video["type"] == "video/mp4" ){
