@@ -1,6 +1,16 @@
 <?php 
 
   session_start();
+  
+  if (isset($_SESSION['type'])){
+    $tipo = $_SESSION['type'];
+    if ( $tipo == 1 ) {
+      header("Location:http://localhost/proyecto/reproduccion.php"); 
+    }else if ( $tipo == 2 ){
+      header("Location:http://localhost/proyecto/abmAdmin.php");
+    } 
+  }
+
 
 ?>
 
@@ -222,10 +232,49 @@
 		</div>
 
   </div>
+  <div class="modal" id="loginModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
 
-</div>
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h2>¡Bienvenido!</h2>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <form method="POST" id="form-login" autocomplete="off">
+            <p>Ingrese su correo y contraseña</p>
+            <p id="resultado-login"></p>
+            <div class="form-group">
+              <input type="email" id="email" name="email" class="form-control" placeholder="Correo electronico"
+                required>
+            </div>
+            <div class="form-group">
+              <input type="password" id="psw" name="psw" class="form-control" placeholder="Contraseña" required>
+            </div>
+            <div class="forgot">
+              <a href="#">Olvido su contraseña?</a>
+            </div>
+            <button type="submit" id="btn-login" name="login" class="btn btn-primary btn-block btn-md">Ingresar</button>
+            <div class="register">
+              <a href="register.php">No tienes cuenta? Registrate!</a>
+            </div>
+          </form>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
   <!--scripts-->
 	<script src="./assets/js/sendComment.js"></script>
+  <script src="./assets/js/validationLogin.js"></script>
   <!--scripts Fin-->
 </body>
 

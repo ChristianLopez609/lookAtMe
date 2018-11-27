@@ -2,6 +2,14 @@
 
   session_start();
 
+  if (isset($_SESSION['type'])){
+    $tipo = $_SESSION['type'];
+    if ( $tipo == 1 ) {
+      header("Location:http://localhost/proyecto/reproduccion.php"); 
+    }else if ( $tipo == 2 ){
+      header("Location:http://localhost/proyecto/abmAdmin.php");
+    } 
+  }
 ?>
 
 <!DOCTYPE HTML>
