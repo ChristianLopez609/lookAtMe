@@ -2,9 +2,7 @@
     session_start();
 
     require '../database.php';
-
     // PHP mailer
-
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
 
@@ -17,36 +15,33 @@
     $psw = $_POST["psw"];
     $confirm = $_POST["pswconfirm"];
     $type = $_POST["select"];
+    $status = 0;
 
     if ( !empty($name) && !empty($email) && !empty($type) && !empty($psw) && !empty($confirm) ) {
 
-        $sql = "SELECT email FROM users WHERE email = :email";
+        // $sql = "SELECT email FROM users WHERE email = :email";
 
-        $stmt = $connetion -> prepare($sql);
+        // $stmt = $connetion -> prepare($sql);
 
-        $stmt -> bindParam(':email', $email);
+        // $stmt -> bindParam(':email', $email);
 
-        $result = $stmt ->execute();
+        // $result = $stmt ->execute();
 
-        if (count($result) > 0){
+        // if (count($result) > 0){
             
-            echo "Repetido";
+        //     echo $result;
+        //     echo $email, $psw;
+        //     echo "Repetido";
         
-        } else {
+        // } else {
 
             if ( $psw == $confirm ){
 
-                $sql = "INSERT INTO users (name, email, password, confirm, typeUser) VALUES (:name, :email, :psw, :confirm, :type)";
+                $sql = "INSERT INTO users (name, email, password, confirm, typeUser, status) VALUES (:name, :email, :psw, :confirm, :type, :status)";
                 
                 $stmt = $connetion->prepare($sql);
-    
-                if ( $stmt -> execute(array(':name' =>$name, ':email' =>$email, ':psw' =>$psw, ':confirm' =>$confirm, ':type' =>$type)) ) {
                 
-                $result = $connetion -> lastInsertId();
-    
-                //$_SESSION["name"] = $name;
-                //$_SESSION["type"] = $type;
-                //$_SESSION["userId"] = $result;
+                if ( $stmt -> execute(array(':name' =>$name, ':email' =>$email, ':psw' =>$psw, ':confirm' =>$confirm, ':type' =>$type, ':status' =>$status)) ) {
                 
                 $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
                 try {
@@ -75,7 +70,7 @@
                     //Content
                     $mail->isHTML(true);                                  // Set email format to HTML
                     $mail->Subject = 'Validacion de cuenta';
-                    $mail->Body    = 'Hola: ' . $name . '</br>' . 'Este correo es solo para notificarte que tu cuenta fue activada. Para volver, vaya a este link: http://localhost/proyecto/index.php';
+                    $mail->Body    = 'Hola: ' . $name . '</br>' . 'Este correo es solo para notificarte que tu cuenta fue activada. Para volver, vaya a este link: http://localhost/proyecto/index.php?email='. $email . '&psw='. $psw ;
                     //$mail->AltBody = '';
     
                     $mail->send();
@@ -93,11 +88,11 @@
                 echo "Error";
             }
 
-        }
+        // }
 
-        
-        
     }
 
+    unset($email);
+    unset($psw);
     unset($connetion);
 ?>

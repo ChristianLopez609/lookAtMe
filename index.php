@@ -1,5 +1,4 @@
 <?php 
-
   session_start();
 
   if (isset($_SESSION['type'])){
@@ -9,6 +8,61 @@
     }else if ( $tipo == 2 ){
       header("Location:http://localhost/proyecto/abmAdmin.php");
     } 
+  }
+
+  if ( isset($_GET["email"]) && isset($_GET["psw"]) ){
+
+    $correo = $_GET["email"];
+    $contraseña = $_GET["psw"];
+
+    $correo = strip_tags($_GET["email"]);
+    $correo = trim($_GET["email"]);
+
+    $contraseña = strip_tags($_GET["psw"]);
+    $contraseña = trim($_GET["psw"]);
+
+    require 'database.php';
+    $sql = "SELECT * FROM users WHERE email = :correo";
+    $stmt = $connetion->prepare($sql);  
+    $stmt -> bindParam(':correo', $correo);
+    $stmt -> execute();
+    $result = $stmt -> fetch(PDO::FETCH_ASSOC);
+    $confirm = $result['password'];
+    $estado = $result['status'];
+
+    if ( count($result) > 0 && ($contraseña == $confirm) && $estado == 1){   
+      $_SESSION["name"] = $result['name'];
+      $_SESSION["type"] = $result['typeUser'];
+      $_SESSION["userId"] = $result['userId'];
+      
+      //Libero las variables.
+      unset($sql);
+      unset($stmt);
+      unset($result);
+      unset($connetion);
+
+    } else if (count($result) > 0 && ($contraseña == $confirm) && $estado == 0){
+      $estado = 1;
+      $sql = "UPDATE users SET status = :estado WHERE email = :correo";
+      $stmt = $connetion ->prepare($sql);
+
+      if ( $stmt -> execute(array(':estado' =>$estado, ':correo' =>$correo)) ){
+        $sql = "SELECT * FROM users WHERE email = :correo";
+        $stmt = $connetion->prepare($sql);
+        $stmt -> bindParam(':correo', $correo);
+        $stmt -> execute();
+        $result = $stmt -> fetch(PDO::FETCH_ASSOC);
+        $_SESSION["name"] = $result['name'];
+        $_SESSION["type"] = $result['typeUser'];
+        $_SESSION["userId"] = $result['userId'];
+        
+        //Libero las variables.
+        unset($sql);
+        unset($stmt);
+        unset($result);
+        unset($connetion);
+      }
+    }
   }
 ?>
 
@@ -31,9 +85,8 @@
   <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
   <script type="text/javascript" src="buscar.js"></script>
 </head>
-<style>
-   
 
+<style>
 ul a{
   color: black;
 }
@@ -62,6 +115,7 @@ ul a{
  display: none;
 }
 </style>
+
 <body>
 
   <!--Navbar -->
@@ -216,7 +270,7 @@ ul a{
 
                 }
               } else {
-                echo "error";
+                echo "¡No hay listas cargadas!";
               }
             
             ?>

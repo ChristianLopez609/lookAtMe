@@ -72,8 +72,9 @@ $(document).ready(function () {
                     if (response == "Ok") {
                         $("#resultado-login").html('<div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert">&times;</button>¡Inicio de sesión exitoso!</div>');
                         window.location = 'http://localhost/proyecto/index.php';
-                    }
-                    else {
+                    } else if (response == "Registrarse"){
+                        $("#resultado-login").html('<div class="alert alert-info alert-dismissible"><button type="button" class="close" data-dismiss="alert">&times;</button>Le enviamos un correo de activacion, revise su casilla.</div>')
+                    } else {
                         $("#resultado-login").html('<div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert">&times;</button>Lo siento, las credenciales no coinciden.</div>')
                     }
                 },

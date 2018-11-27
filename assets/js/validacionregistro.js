@@ -105,12 +105,12 @@ $(document).ready(function () {
                     $("#resultado").html("Procesando, espere por favor...");
                 },
                 success: function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
-                    if (response == "Ok"){
-                        $("#resultado").html('<div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert">&times;</button>Enviamos un correo a su casilla, verifique.</div>');
+                    if (response == "Ok") {
+                        $("#resultado").html('<div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert">&times;</button>Enviamos un correo de activacion a su casilla, verifique.</div>');
                         //window.location = 'http://localhost/proyecto/index.php';
-                    } else if (response == "Repetido"){
+                    } else if (response == "Repetido") {
                         $("#resultado").html('<div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert">&times;</button>Este correo ya esta en uso, por favor ingrese otro.</div>');
-                    } else if (response == "Error"){
+                    } else if (response == "Error") {
                         $("#resultado").html('<div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert">&times;</button>Ocurrio un error, intente nuevamente</div>');
                     }
                 },

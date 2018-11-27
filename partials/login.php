@@ -15,28 +15,30 @@
     if ( !empty($email) && !empty($psw) ){
 
       $sql = "SELECT * FROM users WHERE email = :email";
-
       $stmt = $connetion->prepare($sql);
-      
       $stmt -> bindParam(':email', $email);
-
       $stmt -> execute();
-
       $result = $stmt -> fetch(PDO::FETCH_ASSOC);
+      $confirm = $result['confirm'];
+      $estado = $result['status'];
 
-      $confirm = $result['password'];
-
-      if ( count($result) > 0 && ($psw == $confirm) ){
-        
+      if ( count($result) > 0 && ($psw == $confirm) && $estado == 1){
         $_SESSION["name"] = $result['name'];
         $_SESSION["type"] = $result['typeUser'];
         $_SESSION["userId"] = $result['userId'];
 
         echo "Ok";
+        unset($sql);
+        unset($stmt);
+        unset($connetion);
+      } else if ( count($result) > 0 && ($psw == $confirm) && $estado == 0 ){
+
+        echo "Registrarse";
+      
       } else {
 
         echo "Error";
-      
+
       }
       
     }
