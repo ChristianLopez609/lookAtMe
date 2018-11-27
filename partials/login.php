@@ -27,10 +27,30 @@
       $confirm = $result['password'];
 
       if ( count($result) > 0 && ($psw == $confirm) ){
-        
+
+        $sql2="SELECT acciones.descripcion FROM acciones,permisos WHERE permisos.id_accion = acciones.id_accion AND permisos.id_tipousuario = :id_tipousuario";
+
+        $stmt2 = $connetion->prepare($sql2);
+      
+        $tipouser = $result['typeUser'];
+
+        $stmt2 -> bindParam(':id_tipousuario', $tipouser );
+
+        $stmt2 -> execute();
+
+        $resultado = $stmt2 -> fetchAll(PDO::FETCH_ASSOC);
+
         $_SESSION["name"] = $result['name'];
         $_SESSION["type"] = $result['typeUser'];
         $_SESSION["userId"] = $result['userId'];
+
+        $permisos = array();
+
+        foreach ($resultado as $var) {
+          array_push($permisos, $var['descripcion']);
+
+        }
+        $_SESSION['permisos'] = $permisos;
 
         echo "Ok";
       } else {

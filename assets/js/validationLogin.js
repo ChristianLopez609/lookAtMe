@@ -69,6 +69,9 @@ $(document).ready(function () {
                     $("#resultado-login").html("Procesando, espere por favor...");
                 },
                 success: function (response) {
+
+                    console.log(response);
+                    
                     if (response == "Ok") {
                         $("#resultado-login").html('<div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert">&times;</button>¡Inicio de sesión exitoso!</div>');
                         window.location = 'http://localhost/proyecto/index.php';
