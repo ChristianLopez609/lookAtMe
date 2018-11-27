@@ -1,0 +1,186 @@
+body{
+		background: #b92b27;  /* fallback for old browsers */
+		background: -webkit-linear-gradient(to right, #1565C0, #b92b27);  /* Chrome 10-25, Safari 5.1-6 */
+		background: linear-gradient(to right, #1565C0, #b92b27); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+		text-align: center;
+		font-family: 'Roboto', sans-serif !important;
+	}
+
+.main-div{
+	background: #fff;
+	position: relative;
+	top: 10px;
+	opacity: 1; 
+	border-radius: 0.3rem;
+	margin: auto;
+	margin-bottom: 3px;
+	height: auto;
+}
+
+.main-div .header-content{
+	padding: 2px;
+}
+
+.main-div .header-content .panel-title{
+	
+}
+
+.main-div .body-content{
+	margin-top: 2px; 
+	
+}
+
+.main-div .body-content .list-video{
+	display: flex; 
+	flex-wrap: wrap; 
+	flex-direction: row;
+	justify-content: center;
+}
+
+.main-div .body-content .list-video .grid-video{
+	position: relative;
+	margin-right: 5px;
+	margin-bottom: 24px;
+	display: inline-block;
+	height: 205px;
+	width: 210px;
+	flex-direction: column;
+}
+
+.main-div .body-content .list-video .grid-video:hover{
+	background: #dfdfdf;
+}
+
+.main-div .body-content .list-video .grid-video .image{
+	height: 118px;
+	cursor: pointer;
+}
+
+.main-div .body-content .list-video .grid-video .information {
+	position: absolute;
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	height: 84px;
+	width: 210px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+
+.main-div .body-content .list-video .grid-video .information .name{
+	font-size: 16px;
+	margin-left: 8px !important;
+	margin:5px;
+	overflow:hidden;
+  white-space:nowrap;
+  text-overflow: ellipsis;
+}
+
+.main-div .body-content .list-video .grid-video .information .view-more{
+	text-decoration: none;
+	text-align: center;
+	color: #888;
+	font-size: 14px;
+	padding: 6px 12px;
+	border-radius: 90px;
+	border: 2px solid #888;
+	width: 100%;
+	line-height: 12px;
+}
+
+.main-playlist{
+	background: #fff;
+	position: relative;
+	top: 10px;
+	opacity: 1; 
+	border-radius: 0.3rem;
+	margin: auto;
+	margin-bottom: 3px;
+	height: auto;
+}
+
+.main-playlist .playlist-title{
+}
+
+.main-playlist .playlist{
+	display: flex; 
+	flex-wrap: wrap; 
+	flex-direction: row;
+	justify-content: center;
+
+}
+
+.main-playlist .playlist .grid-playlist{
+	position: relative;
+	margin-right: 5px;
+	margin-bottom: 24px;
+	display: inline-block;
+	width: 210px;
+	flex-direction: column;
+}
+
+.main-playlist .playlist .grid-playlist:hover{
+	background: #dfdfdf;
+}
+
+.main-playlist .playlist .grid-playlist .play-img{
+	cursor: pointer;
+} 
+
+.main-playlist .playlist .grid-playlist .play-img .image-video{
+	width: 210px !important;
+	height: 118px !important;
+}
+
+.main-playlist .playlist .grid-playlist .play-info .name{
+	font-size: 16px;
+	margin-left: 8px !important;
+	margin:5px;
+	overflow:hidden;
+  white-space:nowrap;
+  text-overflow: ellipsis;
+}
+
+
+/* Style Modal Login */
+.modal-header{
+	padding: 35px 50px;
+	text-align: center;
+	background-color: lightgray;
+}
+
+.modal-header h2{
+	color:#444444; 
+}
+
+.modal-body p{
+	text-align: center;
+}
+
+.form-control {
+    background: #f7f7f7 none repeat scroll 0 0;
+}
+
+.forgot a {
+    color: #777777;
+    font-size: 14px;
+	text-decoration: underline;
+	margin-bottom: 10px;
+}
+
+.forgot{
+	margin-bottom: 10px;
+}
+
+.register a{
+	color: #777777;
+	font-size: 14px;
+	margin-top: 10px !important;
+	text-align: center;
+}
+
+.register{
+	text-align: center;
+	margin-top: 10px;
+}
+/* Fin Style Modal */
