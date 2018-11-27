@@ -11,7 +11,7 @@ $(document).ready(function () {
       }
       var filesise = this.files[0].size;
       if (filesise > 10000000) {
-        $('#divvideo').after('<span id="errorvideo" class="alert alert-danger" role="alert">El archivo no debe superar los 5MB</span>');
+        $('#divvideo').after('<span id="errorvideo" class="alert alert-danger" role="alert">El archivo no debe superar los 10MB</span>');
         $('#customFile').focus(function () {
           $('#errorvideo').remove();
         });

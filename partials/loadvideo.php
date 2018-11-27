@@ -12,14 +12,16 @@
 
   if ($tipoUser == 1){
     $tipoVideo = 1;
+    $stringruta = "../videos/";
   } else {
     $tipoVideo = 2;
+    $stringruta = "../videos_admin/";
   }
 
   if ( $video["type"] == "video/mp4" ){
     
     $nom_encriptado = md5($video["tmp_name"]).".mp4";
-    $ruta = "../videos/".$nom_encriptado;
+    $ruta = $stringruta.$nom_encriptado;
     move_uploaded_file($video['tmp_name'], $ruta);
 
     $sql = "INSERT INTO videos (title, description, urlFile, userId, videoTypeId) VALUES (:title, :description, :urlFile, :userId, :videoTypeId)";
