@@ -126,7 +126,15 @@
 			<div class="col-md-8">
 					<div class="img-video">
 							<div class="embed-responsive embed-responsive-16by9">
-								<video class="embed-responsive-item" id="video" autoplay controls src="<?php echo $_GET["urlFile"]?>" allowfullscreen></video>
+                <?php 
+                  $adminruta = 'videos_admin/';
+                  $sql2 = "SELECT videos.title, videos.urlFile, videos.description, users.name FROM videos INNER JOIN users ON videos.videoTypeId = 2 AND videos.userId = users.userId ORDER BY rand() LIMIT 0,1";
+                  $stmt2 = $connetion->prepare($sql2);
+                  $stmt2 -> execute();
+                  $videoresult = $stmt2 -> fetch(PDO::FETCH_ASSOC);
+                ?>
+                <video class="embed-responsive-item index_0" id="video_publi" autoplay controls src="<?php echo $adminruta . $videoresult["urlFile"] ?>" allowfullscreen></video>
+								<video class="embed-responsive-item index_1" id="video" controls src="<?php echo $_GET["urlFile"]?>" allowfullscreen></video>
 							</div>
 					</div>
 					<div class="img-description">
