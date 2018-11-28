@@ -42,24 +42,21 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                 <a class="navbar-brand" href="abmAdmin.php">LookAtMe</a>
-                <h5 class="navbar-nav ml-auto mt-2 mt-lg-0">Bienvenido <?php echo $_SESSION['name'];?></h5>
+                <h3 class="navbar-nav ml-auto mt-2 mt-lg-0">Bienvenido <?php echo $_SESSION['name'];?></h3>
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
 
                     <?php
-
-                    if (isset($_SESSION['type'])){
-
-                    $tipo = $_SESSION['type'];
-                        if ( $tipo == 1 ) {
-                            echo "<li class='nav-item active'>
+                       if (isset($_SESSION['permisos'])){
+                        if (in_array("publicar_video", $_SESSION['permisos'])) { 
+                            header("Location:http://localhost/proyecto/index.php");
+                        }
+                        if (in_array("publicar_video_pub", $_SESSION['permisos'])) {
+                          
+                          echo "<li class='nav-item active'>
                                 <a class='nav-link' href='upload.php'>Subir video<span class='sr-only'></span></a>
                                 </li>";
-                        } else if ( $tipo == 2 ){
-                            echo "</li class='nav-item'> 
-                                    <a class='nav-link' href='abmAdmin.php'>Administrar Publicidad<span class='sr-only'></span></a>
-                                </li>";
-                        } 
-                    } 
+                        }
+                      }
 
                     ?>
 
@@ -92,8 +89,10 @@
             <div class="col-md">
                 <div class="panel">
                     <div class="table-items">
-                            <h4>Publicidades</h4>
                         <table class="table table-bordered">
+                            <div class="title-table">
+                                <h4>Publicidades</h4>
+                            </div>
                             <thead>
                                 <tr>
                                     <th scope="col">Autor</th>
@@ -106,28 +105,28 @@
                             <tbody>
                                 <?php
                 
-                                include "database.php";
-                                
-                                $ruta = 'videos_admin/';
+                  include "database.php";
+                  
+                  $ruta = 'videos_admin/';
 
-                                $sql = "SELECT videos.videoId, videos.title, videos.description, videos.urlFile, users.name FROM videos, users WHERE videos.videoTypeId = 2 AND users.userId = videos.userId";
+                  $sql = "SELECT videos.videoId, videos.title, videos.description, videos.urlFile, users.name FROM videos, users WHERE videos.videoTypeId = 2 AND users.userId = videos.userId";
 
-                                $stmt = $connetion->prepare($sql);
-                                
-                                $result = $stmt -> execute();
+                  $stmt = $connetion->prepare($sql);
+                  
+                  $result = $stmt -> execute();
 
-                                $result = $stmt -> fetchAll();
-                                
-                                if ( count($result) > 0){
-                        
-                                    foreach($result as $key){
-                                    $nombre = $key["name"]; 
-                                    $urlFile = $key["urlFile"];
-                                    $title = $key["title"];
-                                    $videoId = $key["videoId"];
-                                    $description = $key["description"];
+                  $result = $stmt -> fetchAll();
+                 
+                  if ( count($result) > 0){
+        
+                    foreach($result as $key){
+                      $nombre = $key["name"]; 
+                      $urlFile = $key["urlFile"];
+                      $title = $key["title"];
+                      $videoId = $key["videoId"];
+                      $description = $key["description"];
 
-                                    ?>
+                      ?>
                                 <tr>
                                     <th scope="row"><?php echo $nombre; ?></th>
                                     <td><?php echo $title;?></td>
@@ -143,7 +142,7 @@
                                     </td>
                                     <td>
                                         <button id="btn-delete" class="btn btn-danger">Borrar</button>
-                                        <button id="btn-edit" class="btn btn-primary">Editar</button>
+                                        <button id="btn-edit" class="btn btn-primary" type="button" data-toggle="modal" data-target='#editvideoModal<?php echo $videoId;?>'>Editar</button>
                                     </td>
                                 </tr>
                                   <div class="modal" id="videoModal<?php echo $videoId;?>">
@@ -152,7 +151,7 @@
 
                                         <!-- Modal Header -->
                                         <div class="modal-header">
-                                          <h2>Vista previa</h2>
+                                          <h2>Video!</h2>
                                         </div>
                                         <div class="img-video">
                                                 <div class="embed-responsive embed-responsive-16by9">
@@ -174,6 +173,59 @@
 
                                     </div>
                                   </div>
+                                  <div class="modal" id="editvideoModal<?php echo $videoId;?>">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content">
+
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                          <h2>Modificando publicidad!</h2>
+                                        </div>
+
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                            <form method="POST" id="formeditarpubli" enctype="multipart/form-data" autocomplete="off">
+                                                <input type="text" name="idvideo" style="display: none" value="<?php echo $videoId;?>">
+                                                        <div class="row" >
+                                                            <div class="col-md-8 col-lg-8 panel">
+                                                                <div class="">
+                                                                    <h2 class="title-upload">Carga de video</h2>
+                                                                    <p class="subtitle-upload">Videos en formato MP4</p>
+                                                                </div>
+                                                                <div class="custom-file" id="divvideo">
+                                                                    <input type="file" size="10000000"  class="custom-file-label col-md-12" name="file" id="customFile" accept="video/mp4">
+                                                                    <label class="custom-file-label col-md-12" for="customFile">Seleccionar Archivo</label>
+                                                                </div>
+                                                                <div class="preview">
+                                                                    <output class="preview-video" id="list"></output>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4 col-lg-4 panel">
+                                                                    <div class="form-group">
+                                                                        <label for="title">Titulo</label>
+                                                                        <input type="text" class="form-control" name="title" id="title" required="">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="FormControlTextArea">Descripcion</label>
+                                                                        <textarea class="form-control" id="description" name="description" rows="3" required=""></textarea>
+                                                                    </div>
+                                                                    <div class="form group actions">
+                                                                        <button type="submit" class="btn btn-primary btn-block" name="btn-guardar" id="btn-guardar">Guardar</button>
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                            </div>
+                                            <!-- Modal footer -->
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                      </div>
+                                  </div>
+
+
+                                  </div>
                                 <?php
 
                             }
@@ -190,41 +242,43 @@
         </div>
     </div>
     <div class="container">
-        <div class="panel-upload">
-            <form method="POST" id="formguardarv" enctype="multipart/form-data" autocomplete="off">
-                <div class="row" >
-                    <div class="col-md-8 col-lg-8 panel-1">
-                        <div class="">
-                            <h2 class="title-upload">Carga de video</h2>
-                            <p class="subtitle-upload">Videos en formato MP4</p>
-                        </div>
-                        <div class="custom-file" id="divvideo">
-                            <input type="file" size="10000000"  class="custom-file-label" name="file" id="customFile" accept="video/mp4" required="">
-                            <label class="custom-file-label" for="customFile">Seleccionar Archivo</label>
-                        </div>
-                        <div class="preview">
-                            <output class="preview-video" id="list"></output>
-                        </div>
+        <div class="title">
+            <h4>Carga de Publicidad</h4>
+        </div>
+        <form method="POST" id="formguardarvideopub" enctype="multipart/form-data" autocomplete="off">
+            <div class="row" >
+                <div class="col-md-8 col-lg-8 panel">
+                    <div class="">
+                        <h2 class="title-upload">Carga de video</h2>
+                        <p class="subtitle-upload">Videos en formato MP4</p>
                     </div>
-                    <div class="col-md-4 col-lg-4 panel-2">
-                            <div class="form-group">
-                                <label for="title">Titulo</label>
-                                <input type="text" class="form-control" name="title" id="title" required="">
-                            </div>
-                            <div class="form-group">
-                                <label for="FormControlTextArea">Descripcion</label>
-                                <textarea class="form-control" id="description" name="description" rows="3" required=""></textarea>
-                            </div>
-                            <div class="form group actions">
-                                <button type="submit" class="btn btn-primary btn-block" name="btn-guardar" id="btn-guardar">Guardar</button>
-                                <button type="button" class="btn btn-danger btn-block">Cancelar</button>
-                            </div>
+                    <div class="custom-file" id="divvideo">
+                        <input type="file" size="10000000"  class="custom-file-label" name="file" id="customFile" accept="video/mp4" required="">
+                        <label class="custom-file-label" for="customFile">Seleccionar Archivo</label>
+                    </div>
+                    <div class="preview">
+                        <output class="preview-video" id="list"></output>
                     </div>
                 </div>
-            </form>
-        </div>
+                <div class="col-md-4 col-lg-4 panel">
+                        <div class="form-group">
+                            <label for="title">Titulo</label>
+                            <input type="text" class="form-control" name="title" id="title" required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="FormControlTextArea">Descripcion</label>
+                            <textarea class="form-control" id="description" name="description" rows="3" required=""></textarea>
+                        </div>
+                        <div class="form group actions">
+                            <button type="submit" class="btn btn-primary btn-block" name="btn-guardar" id="btn-guardar">Guardar</button>
+                            <button type="button" class="btn btn-danger btn-block">Cancelar</button>
+                        </div>
+                </div>
+            </div>
+        </form>
 
 </body>
     <script src="./assets/js/validacionvideo.js"></script>
     <script src="./assets/js/script2.js" ></script>
+    <script src="./assets/js/validacionmodif.js"></script>
 </html>
