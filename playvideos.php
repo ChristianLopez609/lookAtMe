@@ -1,7 +1,14 @@
 <?php 
 
   session_start();
-
+    if (isset($_SESSION['permisos'])){
+    if (in_array("ver_videos_user", $_SESSION['permisos'])) { 
+    }
+    if (in_array("publicar_video_pub", $_SESSION['permisos'])) {
+        header("Location:http://localhost/proyecto/abmAdmin.php");
+       
+    } 
+  }
 ?>
 
 <!DOCTYPE HTML>
@@ -44,19 +51,16 @@
 
                       <?php
 
-                      if (isset($_SESSION['type'])){
-
-                      $tipo = $_SESSION['type'];
-                        if ( $tipo == 1 ) {
-                            echo "<li class='nav-item active'>
+                       if (isset($_SESSION['permisos'])){
+                        if (in_array("ver_videos_user", $_SESSION['permisos'])) { 
+                          echo "<li class='nav-item active'>
                                 <a class='nav-link' href='upload.php'>Subir video<span class='sr-only'></span></a>
                                 </li>";
-                        } else if ( $tipo == 2 ){
-                            echo "</li class='nav-item'> 
-                                    <a class='nav-link' href='abmAdmin.php'>Administrar Publicidad<span class='sr-only'></span></a>
-                                </li>";
-                        } 
-                      } 
+                        }
+                        if (in_array("publicar_video_pub", $_SESSION['permisos'])) {
+                          header("Location:http://localhost/proyecto/abmAdmin.php");
+                        }
+                      }
 
                     ?>
 
