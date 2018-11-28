@@ -138,29 +138,30 @@
               if (isset($_SESSION['name'])){
                 echo '<form id="form-add-playlist" class="form-add-playlist" method="post">
                     
-                    <div class="form-group" id="playlistSelect">
-                        <select class="form-control" id="playlists" name="playlists" required="">
-                            <option value="">Añadir a playlist</option>
-                            <?php  // Script para recuperar las playlist.
-                              $sql = "SELECT playlistId, titleplay FROM playlist";
-                              $stmt = $connetion->prepare($sql);                           
-                              $stmt -> execute();
-                              $result = $stmt -> fetchAll();                           
-                              if (count($result) > 0){                            
-                                foreach($result as $key){
-                                  echo $key["title"];
+                          <div class="form-group" id="playlistSelect">
+                              <select class="form-control" id="playlists" name="playlists" required="">
+                                  <option value="">Añadir a playlist</option>
+                                  <?php  // Script para recuperar las playlist.
+                                    $sql = "SELECT playlistId, titleplay FROM playlist";
+                                    $stmt = $connetion->prepare($sql);                           
+                                    $stmt -> execute();
+                                    $result = $stmt -> fetchAll();                           
+                                    if (count($result) > 0){                            
+                                      foreach($result as $key){
+                                        echo $key["title"];
+                                        ?>
+                                        <option value="<?php echo $key["playlistId"] ?>"> <?php echo $key["titleplay"] ?> </option>
+                                        <?php 
+                                      }
+                                    }
                                   ?>
-                                  <option value="<?php echo $key["playlistId"] ?>"> <?php echo $key["titleplay"] ?> </option>
-                                  <?php
-                                }
-                              }
-                            ?>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Añadir</button>
-                    <div id="cargar" class="result-playlist">
-                    </div>
-                </form>';
+                              </select>
+                          </div>
+                          <button type="submit" class="btn btn-primary">Añadir</button>
+                          <div id="cargar" class="result-playlist">
+                          </div>
+
+                      </form>';
               } else {
 
               }

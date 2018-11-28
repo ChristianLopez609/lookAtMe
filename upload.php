@@ -124,9 +124,9 @@
                 </div>
             </div>
         </form>
-        <div class="playlist" style="border: solid 1px black; position: relative; top: 10px; background: #fff; padding:10px">
+        <div class="playlist">
             <div class="columns">
-                <div class="col-md-12">
+                <div class="col-md">
                     <form method="post" id="form-playlist" autocomplete="off">
                         <h4>Creación Lista de reproducción</h4>
                         <div class="form-group">
@@ -144,49 +144,6 @@
         </div>
     </div>
     <!--Fin content-->
-    
-     <!-- The Modal -->
-      <div class="modal" id="loginModal">
-        <div class="modal-dialog">
-          <div class="modal-content">
-
-            <!-- Modal Header -->
-            <div class="modal-header">
-              <h2>¡Bienvenido!</h2>
-            </div>
-
-            <!-- Modal body -->
-            <div class="modal-body">
-              <form method="POST" id="formlogin">
-                <p>Ingrese su correo y contraseña</p>
-                <div class="form-group">
-                  <input type="email" id="email" name="email" class="form-control" placeholder="Correo electronico"
-                    required>
-                </div>
-                <div class="form-group">
-                  <input type="password" id="psw" name="psw" class="form-control" placeholder="Contraseña" required>
-                </div>
-                <div class="forgot">
-                  <a href="#">Olvido su contraseña?</a>
-                </div>
-                <button type="submit" id="btn-login" name="login" class="btn btn-primary btn-block btn-md">Ingresar</button>
-                <div class="register">
-                  <a href="register.php">No tienes cuenta? Registrate!</a>
-                </div>
-              </form>
-            </div>
-
-            <!-- Modal footer -->
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
-
-          </div>
-
-        </div>
-      </div>
-      </div>
-
 
     <!--scripts-->
     <script src="./assets/js/validacionvideo.js"></script>

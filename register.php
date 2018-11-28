@@ -93,7 +93,7 @@
                     <div class="panel">
                         <h2>Registro</h2>
                         <p>Ingrese sus datos</p>
-                        <p id="resultado"></p>
+                        <p id="resultado-register"></p>
                     </div>
                     
                     <form method="POST" id="formregistrar" autocomplete="off">
@@ -175,7 +175,7 @@
   </div>
 
   <script src="./assets/js/validacionregistro.js"></script>
-  <scrip src="./assets/js/validationLogin.js"></script>
+
 </body>
 
 </html>

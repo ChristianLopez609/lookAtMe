@@ -9,10 +9,10 @@
   $userId = $_SESSION['userId'];
   $tipoUser = $_SESSION['type'];
   $tipoVideo = 'vacio';
-
+ 
   if (in_array("publicar_video", $_SESSION['permisos'])){
     $tipoVideo = 1;
-    $stringruta = "../videos/";
+    $stringruta = '../videos/';
   } else {
     if (in_array("publicar_video_pub", $_SESSION['permisos'])) {
         $tipoVideo = 2;
@@ -31,11 +31,12 @@
     $stmt = $connetion -> prepare($sql);
 
     if ( $stmt -> execute(array(':title' => $title, ':description' => $description, ':urlFile' => $nom_encriptado, ':userId' => $userId, ':videoTypeId' => $tipoVideo)) ){
-      echo "ok";
+      return true;
     } 
 
   } else {
-    echo "error";
+
+    return false;
   }
 
 ?>

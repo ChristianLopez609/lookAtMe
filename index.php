@@ -29,12 +29,25 @@
     $result = $stmt -> fetch(PDO::FETCH_ASSOC);
     $confirm = $result['password'];
     $estado = $result['status'];
+    $tipouser = $result['typeUser'];
 
     if ( count($result) > 0 && ($contraseña == $confirm) && $estado == 1){   
       $_SESSION["name"] = $result['name'];
       $_SESSION["type"] = $result['typeUser'];
       $_SESSION["userId"] = $result['userId'];
-      
+      //Script de permisos
+      $sql2="SELECT acciones.descripcion FROM acciones,permisos WHERE permisos.id_accion = acciones.id_accion AND permisos.id_tipousuario = :id_tipousuario";
+      $stmt2 = $connetion->prepare($sql2);     
+      $stmt2 -> bindParam(':id_tipousuario', $tipouser );
+      $stmt2 -> execute();
+      $resultado = $stmt2 -> fetchAll(PDO::FETCH_ASSOC);
+      $permisos = array();
+      foreach ($resultado as $var) {
+        array_push($permisos, $var['descripcion']);
+      }
+      $_SESSION["permisos"] = $permisos;
+      //Fin de permisos
+
       //Libero las variables.
       unset($sql);
       unset($stmt);
@@ -55,6 +68,19 @@
         $_SESSION["name"] = $result['name'];
         $_SESSION["type"] = $result['typeUser'];
         $_SESSION["userId"] = $result['userId'];
+
+        //Script de permisos
+        $sql2="SELECT acciones.descripcion FROM acciones,permisos WHERE permisos.id_accion = acciones.id_accion AND permisos.id_tipousuario = :id_tipousuario";
+        $stmt2 = $connetion->prepare($sql2);     
+        $stmt2 -> bindParam(':id_tipousuario', $tipouser );
+        $stmt2 -> execute();
+        $resultado = $stmt2 -> fetchAll(PDO::FETCH_ASSOC);
+        $permisos = array();
+        foreach ($resultado as $var) {
+          array_push($permisos, $var['descripcion']);
+        }
+        $_SESSION["permisos"] = $permisos;
+        //Fin de permisos
         
         //Libero las variables.
         unset($sql);

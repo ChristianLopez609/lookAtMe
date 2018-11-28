@@ -56,3 +56,10 @@ body{
     padding: 10px;
     border-left-style: groove;
 } 
+
+.playlist {
+    position: relative; 
+    top: 10px; 
+    background: #fff; 
+    padding:10px;
+}
