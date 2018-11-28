@@ -94,6 +94,52 @@ $(document).ready(function () {
     // Fin envio de formulario.
   });
 
+//Validar video de admin
+    $('#formguardarvideopub').submit(function (e) {
+    e.preventDefault();
 
+    var titulo1 = $('#title').val();
+    var description1 = $('#description').val();
 
+    var validacion = validarvideo(titulo1, description1);
+
+    if (validacion) {
+
+      // Envio de formulario por ajax.
+      var data = new FormData($('#formguardarvideopub')[0]);
+
+      $.ajax({
+        type: 'POST', //método de envio
+        data: data, //datos que se envian a traves de ajax
+        url: "partials/loadvideo.php", //archivo que recibe la peticion
+        contentType: false,
+        processData: false,
+        beforeSend: function () {
+          console.log("subiendo...");
+        },
+        success: function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+          if (response == "ok") {
+            console.log("video subido con exito");
+            $("#list").html('<div class="alert alert-info">Video subido con exito</div>');
+            //window.location = 'http://localhost/lookAtMe/upload.php';
+            window.location = 'http://localhost/proyecto/abmAdmin.php';
+          } else if (response == "error") {
+            $("#list").html('<div class="alert alert-danger">El archivo no es un video</div>');
+            console.log("No es un video");
+          }
+          //window.location = 'http://localhost/demo/index.php';
+        },
+        error: function (errortext) {
+          console.log(errortext);
+        }
+      });
+      // Fin envio de formulario.
+    } else {
+
+      console.log("Error");
+      //sino valida, tenes que mostrar los errores por pantalla.
+
+    }
+
+  });
 });

@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+$('#errorvideo').remove();
   function archivo(e) {
     var files = e.target.files; // FileList object
     // Obtenemos el video del campo "file".
