@@ -105,6 +105,8 @@
 
   <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="./assets/css/search.css">
+  <script type="text/javascript" src="buscar.js"></script>
+
   <script src="./assets/jquery/jquery-3.3.1.min.js"></script>
   <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
 
@@ -129,7 +131,6 @@
               <div class="input_container" id="pi">
             <input autocomplete="off" class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" name="titulo" id="titulo" onkeyup="autocompletar()">
             <ul id="lista_id"></ul>
-            <button class="btn btn-primary my-2 my-sm-0" type="submit" id="btn-buscar" name="btn-buscar">Buscar</button>
             </div>
 
           </form>
