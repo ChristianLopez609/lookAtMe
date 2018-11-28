@@ -50,11 +50,11 @@ $(document).ready(function () {
         },
         success: function (response) {
         console.log(response); //una vez que el archivo recibe el request lo procesa y lo devuelve
-          if (response == "ok") {
-            $("#list").html('<div class="alert alert-info">Datos modificados con exito</div>');
+          if (response ) {
+            $("#listpeque").html('<div class="alert alert-info">Datos modificados con exito</div>');
             window.location = 'http://localhost/proyecto/abmAdmin.php';
           } else if (response == "error") {
-            $("#list").html('<div class="alert alert-danger">No se puede modificar los dato</div>');
+            $("#listpeque").html('<div class="alert alert-danger">No se puede modificar los dato</div>');
             console.log("No es un dato");
           }
           //window.location = 'http://localhost/demo/index.php';
