@@ -53,7 +53,7 @@
                         if (in_array("publicar_video_pub", $_SESSION['permisos'])) {
                           
                           echo "<li class='nav-item active'>
-                                <a class='nav-link' href='upload.php'>Subir video<span class='sr-only'></span></a>
+                                <a class='nav-link' href='abmAdmin.php'>Adminisrar Publicidad<span class='sr-only'></span></a>
                                 </li>";
                         }
                       }
