@@ -1,13 +1,57 @@
-.panel{
-	margin-top: 10px;
-	border-style: groove;
-	border-radius: 5px;
-	padding: 10px;
+body{
+  background: #b92b27;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #1565C0, #b92b27);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #1565C0, #b92b27); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  text-align: center;
+  font-family: 'Roboto', sans-serif !important;
 }
 
+.panel{
+	position: relative;
+	top: 10px;
+	border-style: groove;
+	border-radius: 0.3rem;
+	padding: 10px;
+	background: #fff;
+}
 
+.panel .table-items{
+	height: 400px;
+	overflow: auto;
+}
+
+.panel .table-items .table{
+	
+}
 
 #btn-delete, #btn-edit{
 	float: right;
 	margin: 1px;
 }
+
+.panel-upload{
+	position: relative;
+	top: 20px;
+	background: #fff;
+	padding: 10px;
+	border-radius: 0.3rem;
+}
+
+.panel-upload .panel1 .preview{
+	position: relative;
+	text-align: center;
+	width: 100%;
+	height: 200px;
+}
+
+.panel-upload .panel1 .preview .preview-video .embed-responsive{
+	height: 200px !important;
+}
+
+.panel-upload .panel2{
+	width: auto; 
+	height: auto; 
+	min-width: auto;
+	padding: 10px;
+	border-left-style: groove;
+} 
