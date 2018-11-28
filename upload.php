@@ -2,10 +2,14 @@
 
     session_start();
 
-    if (!isset($_SESSION['name'])){
-      header("Location: index.php");
+  if (isset($_SESSION['permisos'])){
+    if (in_array("publicar_video", $_SESSION['permisos'])) { 
     }
-    
+    if (in_array("publicar_video_pub", $_SESSION['permisos'])) {
+        header("Location:http://localhost/proyecto/abmAdmin.php");
+       
+    } 
+  }
 ?>
 
 <!DOCTYPE HTML>
