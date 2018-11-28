@@ -1,7 +1,8 @@
 $(document).ready(function () {
 
   function validarvideo(titulo, description) {
-
+    console.log(titulo);
+    console.log(description);
     $(".error").remove();
 
     if (titulo.length < 1) {
@@ -98,10 +99,10 @@ $(document).ready(function () {
     $('#formguardarvideopub').submit(function (e) {
     e.preventDefault();
 
-    var titulo1 = $('#title').val();
-    var description1 = $('#description').val();
+    var titulo = $('#title').val();
+    var description = $('#description').val();
 
-    var validacion = validarvideo(titulo1, description1);
+    var validacion = validarvideo(titulo, description);
 
     if (validacion) {
 
@@ -135,8 +136,8 @@ $(document).ready(function () {
       });
       // Fin envio de formulario.
     } else {
-
-      console.log("Error");
+      console.log(titulo);
+      console.log(description);
       //sino valida, tenes que mostrar los errores por pantalla.
 
     }

@@ -70,7 +70,7 @@ $(document).ready(function () {
                 },
                 success: function (response) {
 
-                    console.log(response);
+                    console.log(response == "Ok");
                     
                     if (response == "Ok") {
                         $("#resultado-login").html('<div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert">&times;</button>¡Inicio de sesión exitoso!</div>');

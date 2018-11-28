@@ -84,7 +84,7 @@
     </nav>
     <!--Navbar Fin-->
 
-    <div class="container">
+    <div class="container" id="cont1">
         <div class="row">
             <div class="col-md">
                 <div class="panel">
@@ -139,7 +139,8 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <button id="btn-delete" class="btn btn-danger">Borrar</button>
+                                        <?php echo "
+                                        <button id='btn-delete' class='btn btn-danger borrar' data-idvideo='".$videoId."'>Borrar</button>";?>
                                         <button id="btn-edit" class="btn btn-primary" type="button" data-toggle="modal" data-target='#editvideoModal<?php echo $videoId;?>'>Editar</button>
                                     </td>
                                 </tr>
@@ -182,30 +183,30 @@
 
                                         <!-- Modal body -->
                                         <div class="modal-body">
-                                            <form method="POST" id="formeditarpubli" enctype="multipart/form-data" autocomplete="off">
+                                            <form method="POST" id="formeditar" enctype="multipart/form-data" autocomplete="off">
                                                 <input type="text" name="idvideo" style="display: none" value="<?php echo $videoId;?>">
                                                         <div class="row" >
-                                                            <div class="col-md-8 col-lg-8 panel">
+                                                            <div class="col-md-6 col-lg-6 panel">
                                                                 <div class="">
                                                                     <h2 class="title-upload">Carga de video</h2>
                                                                     <p class="subtitle-upload">Videos en formato MP4</p>
                                                                 </div>
-                                                                <div class="custom-file" id="divvideo">
-                                                                    <input type="file" size="10000000"  class="custom-file-label col-md-12" name="file" id="customFile" accept="video/mp4">
-                                                                    <label class="custom-file-label col-md-12" for="customFile">Seleccionar Archivo</label>
+                                                                <div class="custom-file" id="divvideopeque">
+                                                                    <input type="file" size="10000000"  class="custom-file-label col-md-12" name="filepeque" id="customFilepeque" accept="video/mp4">
+                                                                    <label class="custom-file-label col-md-12" for="customFilepeque">Seleccionar Archivo</label>
                                                                 </div>
                                                                 <div class="preview">
-                                                                    <output class="preview-video" id="list"></output>
+                                                                    <output class="preview-video" id="listpeque"></output>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-4 col-lg-4 panel">
+                                                            <div class="col-md-6 col-lg-6 panel">
                                                                     <div class="form-group">
                                                                         <label for="title">Titulo</label>
-                                                                        <input type="text" class="form-control" name="title" id="title" required="">
+                                                                        <input type="text" class="form-control" name="titlepeque" id="titlepeque" >
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="FormControlTextArea">Descripcion</label>
-                                                                        <textarea class="form-control" id="description" name="description" rows="3" required=""></textarea>
+                                                                        <textarea class="form-control" id="descriptionpeque" name="descriptionpeque" rows="3"></textarea>
                                                                     </div>
                                                                     <div class="form group actions">
                                                                         <button type="submit" class="btn btn-primary btn-block" name="btn-guardar" id="btn-guardar">Guardar</button>
@@ -276,6 +277,9 @@
 
 </body>
     <script src="./assets/js/validacionvideo.js"></script>
-    <script src="./assets/js/script2.js" ></script>
+    <script src="./assets/js/script2.js"></script>
     <script src="./assets/js/validacionmodif.js"></script>
+    <script src="./assets/js/cargavideopeque.js"></script>
+    <script src="./assets/js/borrarpubli.js"></script>
+
 </html>
