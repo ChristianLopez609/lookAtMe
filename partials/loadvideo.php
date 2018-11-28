@@ -31,12 +31,10 @@
     $stmt = $connetion -> prepare($sql);
 
     if ( $stmt -> execute(array(':title' => $title, ':description' => $description, ':urlFile' => $nom_encriptado, ':userId' => $userId, ':videoTypeId' => $tipoVideo)) ){
-      return true;
     } 
 
-  } else {
+    echo "ok";
 
-    return false;
   }
 
 ?>

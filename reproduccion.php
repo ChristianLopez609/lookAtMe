@@ -73,14 +73,13 @@
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Cuenta
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                           <?php 
                               if ( isset ($_SESSION['name']) ){
                               echo "<a class='dropdown-item' href='logout.php'>Cerrar sesión</a>";
                               
                               } else { 
-                              echo "<a class='dropdown-item' data-toggle='modal' href='#loginModal'>Iniciar sesión</a>";
-                              echo "<a class='dropdown-item' href='register.php'>Registrarse</a>";
+                              echo "<a class='dropdown-item' href='index.php'>Inicio</a>";
                               }
                           ?>
                         </div>
@@ -134,38 +133,30 @@
               <h6 class="img-title"><strong><?php echo $result["title"] ?></strong> </h6>
               <p class="img-autor"> <strong>Autor: </strong><?php echo $result["name"] ?> </p>
 							<p class="img-description"> <?php echo $result["description"] ?> </p>
-              <?php
-              if (isset($_SESSION['name'])){
-                echo '<form id="form-add-playlist" class="form-add-playlist" method="post">
-                    
-                          <div class="form-group" id="playlistSelect">
-                              <select class="form-control" id="playlists" name="playlists" required="">
-                                  <option value="">Añadir a playlist</option>
-                                  <?php  // Script para recuperar las playlist.
-                                    $sql = "SELECT playlistId, titleplay FROM playlist";
-                                    $stmt = $connetion->prepare($sql);                           
-                                    $stmt -> execute();
-                                    $result = $stmt -> fetchAll();                           
-                                    if (count($result) > 0){                            
-                                      foreach($result as $key){
-                                        echo $key["title"];
-                                        ?>
-                                        <option value="<?php echo $key["playlistId"] ?>"> <?php echo $key["titleplay"] ?> </option>
-                                        <?php 
-                                      }
-                                    }
+              <form id="form-add-playlist" class="form-add-playlist" method="post">      
+                    <div class="form-group" id="playlistSelect">
+                        <select class="form-control" id="playlists" name="playlists" required="">
+                            <option value="">Añadir a playlist</option>
+                            <?php  // Script para recuperar las playlist.
+                              $sql = "SELECT playlistId, titleplay FROM playlist";
+                              $stmt = $connetion->prepare($sql);                           
+                              $stmt -> execute();
+                              $result = $stmt -> fetchAll();                           
+                              if (count($result) > 0){                            
+                                foreach($result as $key){
+                                  echo $key["title"];
                                   ?>
-                              </select>
-                          </div>
-                          <button type="submit" class="btn btn-primary">Añadir</button>
-                          <div id="cargar" class="result-playlist">
-                          </div>
-
-                      </form>';
-              } else {
-
-              }
-              ?>
+                                  <option value=<?php echo $key["playlistId"] ?>> <?php echo $key["titleplay"] ?> </option>
+                                  <?php
+                                }
+                              }
+                            ?>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Añadir</button>
+                    <div id="cargar" class="result-playlist">
+                    </div>
+              </form>
 					</div>
 
           <?php 

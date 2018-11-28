@@ -74,8 +74,7 @@
                     echo "<a class='dropdown-item' href='logout.php'>Cerrar sesión</a>";
                     
                     } else { 
-                    echo "<a class='dropdown-item' data-toggle='modal' href='#loginModal'>Iniciar sesión</a>";
-                    echo "<a class='dropdown-item' href='./register.php'>Registrarse</a>";
+                    echo "<a class='dropdown-item' href='index.php'>Inicio</a>";
                     }
                   ?>
                 </div>

@@ -41,14 +41,12 @@ $(document).ready(function () {
           $("#list").html('<div class="alert alert-info">Subiendo archivo...</div>');
         },
         success: function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
-          alert(response);
-          // if (response) {
-          //   $("#list").html('<div class="alert alert-success">Video subido con exito</div>');
-          //   window.location = 'http://localhost/proyecto/upload.php';
-          // } else{
-          //   $("#list").html('<div class="alert alert-danger">El archivo no es un video</div>');
-          // }
-          //window.location = 'http://localhost/demo/index.php';
+          if (response == "ok") {
+            $("#list").html('<div class="alert alert-success">Video subido con exito</div>');
+            location.reload();
+          } else {
+            $("#list").html('<div class="alert alert-danger">El archivo no es un video</div>');
+          }
         },
         error: function (errortext) {
           console.log(errortext);
@@ -78,15 +76,14 @@ $(document).ready(function () {
       contentType: false,
       processData: false,
       beforeSend: function () {
-        console.log("subiendo...");
+        $("#detail-playlist").html('<div class="alert alert-info">Subiendo archivo...</div>');
       },
       success: function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
         if (response == "ok") {
-          console.log("playlist creada");
           $("#detail-playlist").html('<div class="alert alert-info">Lista de reproduccion creada!</div>');
-          window.location = 'http://localhost/proyecto/upload.php';
+          location.reload();
+          //window.location = 'http://localhost/proyecto/upload.php';
         } else if (response == "error") {
-          console.log("error php");
           $("#detail-playlist").html('<div class="alert alert-danger">Intente nuevamente</div>');
         }
       },

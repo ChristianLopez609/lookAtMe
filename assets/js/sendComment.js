@@ -17,11 +17,12 @@ $(document).ready(function () {
       processData: false,
       contentType: false,
       beforeSend: function () {
-        console.log("Guardando...")
+        $("#cargar").html('<div class="alert alert-info alert-dismissible"><button type="button" class="close" data-dismiss="alert">&times;</button>Añadiendo...</div>');
       },
       success: function (response) {
         if (response == "ok"){
           $("#cargar").html('<div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert">&times;</button>Se añadio video</div>');
+          location.reload();
         } else if (response =="error"){
           $("#cargar").html('<div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert">&times;</button>Error, intente nuevamente</div>');
         }
@@ -48,7 +49,9 @@ $(document).ready(function () {
         console.log("enviando...")
       },
       success: function (response) {
-        console.log(response)
+        if (response == "ok"){
+          location.reload();
+        }
       },
       error: function (errortext) {
         console.log(errortext);

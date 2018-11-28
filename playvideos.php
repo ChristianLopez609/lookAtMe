@@ -65,14 +65,13 @@
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Cuenta
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                           <?php 
                               if ( isset ($_SESSION['name']) ){
                               echo "<a class='dropdown-item' href='logout.php'>Cerrar sesión</a>";
                               
                               } else { 
-                              echo "<a class='dropdown-item' data-toggle='modal' href='#loginModal'>Iniciar sesión</a>";
-                              echo "<a class='dropdown-item' href='register.php'>Registrarse</a>";
+                              echo "<a class='dropdown-item' href='index.php'>Inicio</a>";
                               }
                           ?>
                         </div>
