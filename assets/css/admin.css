@@ -9,7 +9,6 @@ body{
 .panel{
 	position: relative;
 	top: 10px;
-	border-style: groove;
 	border-radius: 0.3rem;
 	padding: 10px;
 	background: #fff;
