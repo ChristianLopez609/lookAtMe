@@ -42,7 +42,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                 <a class="navbar-brand" href="abmAdmin.php">LookAtMe</a>
-                <h3 class="navbar-nav ml-auto mt-2 mt-lg-0">Bienvenido <?php echo $_SESSION['name'];?></h3>
+                <h5 class="navbar-nav ml-auto mt-2 mt-lg-0">Bienvenido <?php echo $_SESSION['name'];?></h5>
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
 
                     <?php
@@ -88,12 +88,10 @@
         <div class="row">
             <div class="col-md">
                 <div class="panel">
+                    <h4>Publicidades</h4>
                     <div class="table-items">
                         <table class="table table-bordered">
-                            <div class="title-table">
-                                <h4>Publicidades</h4>
-                            </div>
-                            <thead>
+                           <thead>
                                 <tr>
                                     <th scope="col">Autor</th>
                                     <th scope="col">Nombre publicidad</th>
@@ -242,40 +240,39 @@
         </div>
     </div>
     <div class="container">
-        <div class="title">
-            <h4>Carga de Publicidad</h4>
+        <div class="panel-upload">
+            <form method="POST" id="formguardarvideopub" enctype="multipart/form-data" autocomplete="off">
+                <div class="row" >
+                    <div class="col-md-8 col-lg-8 panel1">
+                        <div class="">
+                            <h2 class="title-upload">Carga de video</h2>
+                            <p class="subtitle-upload">Videos en formato MP4</p>
+                        </div>
+                        <div class="custom-file" id="divvideo">
+                            <input type="file" size="10000000"  class="custom-file-label" name="file" id="customFile" accept="video/mp4" required="">
+                            <label class="custom-file-label" for="customFile">Seleccionar Archivo</label>
+                        </div>
+                        <div class="preview">
+                            <output class="preview-video" id="list"></output>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-4 panel2">
+                            <div class="form-group">
+                                <label for="title">Titulo</label>
+                                <input type="text" class="form-control" name="title" id="title" required="">
+                            </div>
+                            <div class="form-group">
+                                <label for="FormControlTextArea">Descripcion</label>
+                                <textarea class="form-control" id="description" name="description" rows="3" required=""></textarea>
+                            </div>
+                            <div class="form group actions">
+                                <button type="submit" class="btn btn-primary btn-block" name="btn-guardar" id="btn-guardar">Guardar</button>
+                                <button type="button" class="btn btn-danger btn-block">Cancelar</button>
+                            </div>
+                    </div>
+                </div>
+            </form>
         </div>
-        <form method="POST" id="formguardarvideopub" enctype="multipart/form-data" autocomplete="off">
-            <div class="row" >
-                <div class="col-md-8 col-lg-8 panel">
-                    <div class="">
-                        <h2 class="title-upload">Carga de video</h2>
-                        <p class="subtitle-upload">Videos en formato MP4</p>
-                    </div>
-                    <div class="custom-file" id="divvideo">
-                        <input type="file" size="10000000"  class="custom-file-label" name="file" id="customFile" accept="video/mp4" required="">
-                        <label class="custom-file-label" for="customFile">Seleccionar Archivo</label>
-                    </div>
-                    <div class="preview">
-                        <output class="preview-video" id="list"></output>
-                    </div>
-                </div>
-                <div class="col-md-4 col-lg-4 panel">
-                        <div class="form-group">
-                            <label for="title">Titulo</label>
-                            <input type="text" class="form-control" name="title" id="title" required="">
-                        </div>
-                        <div class="form-group">
-                            <label for="FormControlTextArea">Descripcion</label>
-                            <textarea class="form-control" id="description" name="description" rows="3" required=""></textarea>
-                        </div>
-                        <div class="form group actions">
-                            <button type="submit" class="btn btn-primary btn-block" name="btn-guardar" id="btn-guardar">Guardar</button>
-                            <button type="button" class="btn btn-danger btn-block">Cancelar</button>
-                        </div>
-                </div>
-            </div>
-        </form>
 
 </body>
     <script src="./assets/js/validacionvideo.js"></script>
